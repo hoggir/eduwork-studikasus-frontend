@@ -1,0 +1,15 @@
+.filter {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.card-text-tags {
+    display: table; /* keep the background color wrapped tight */
+    margin-right: 10px;
+    padding:5px 12px;
+    background-color:grey;
+    color:#ffffff;
+    font-size: 13px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
