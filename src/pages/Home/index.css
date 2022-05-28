@@ -1,15 +1,47 @@
-.filter {
+.tags-wrapper {
+    background-color: none;
+}
+
+.tags {
+    padding: 5px 0;
     display: flex;
-    margin-bottom: 10px;
+    align-items: center;
+}
+
+.tags-title {
+    margin-right: 10px;
 }
 
 .card-text-tags {
-    display: table; /* keep the background color wrapped tight */
+    align-items: center;
     margin-right: 10px;
     padding:5px 12px;
     background-color:grey;
     color:#ffffff;
     font-size: 13px;
     border-radius: 20px;
-    margin-bottom: 5px;
+    border: none;
+    text-transform: capitalize;
+}
+
+.card-text-tags>i {
+    margin-right: 5px;
+}
+
+.card-text-tags:hover {
+    background-color: slateblue;
+}
+
+.searchForm {
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.searchForm > .btn {
+    margin-left: 10px;
+}
+
+.tagName{
+    margin-right: 5px;
+    margin-left: 5px;
 }

@@ -1,55 +1,58 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./index.css";
 import FoodCard from "../../components/FoodCard";
-import Tagsc from "../../components/Tagsc";
+import { useDispatch, useSelector } from "react-redux";
+import { getListProduct } from "../../actions/productAction";
+import { getListTag } from "../../actions/tagAction";
+import Tag from "../../components/Tags";
+import SearchProduct from "../../components/Search";
 
 function Home() {
-  const FOOD_API = "http://localhost:3000/api/products/";
-  const TAGS_API = "http://localhost:3000/api/tags/";
-  const [foods, setFoods] = useState([]);
-  const [tags, setTags] = useState([]);
+  const { getListTagResult, getListTagLoading, getListTagError } = useSelector(
+    (state) => state.TagReducer
+  );
+  //console.log(getListTagResult);
+  const { getListProductResult, getListProductLoading, getListProductError } =
+    useSelector((state) => state.ProductReducer);
+  //console.log(getListProductResult);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getFoods(FOOD_API);
-    getTags(TAGS_API);
-  }, []);
-
-  const getFoods = async (API) => {
-    await axios.get(API).then((res) => {
-      const food = res.data;
-      setFoods(food.data);
-      //console.log(food.data)
-    });
-  };
-
-  const getTags = async (API) => {
-    await axios.get(API).then((res) => {
-      const tag = res.data;
-      setTags(tag);
-      console.log(tag);
-    });
-  };
+    //panggil action get product
+    console.log("1. use effect com did mount");
+    dispatch(getListProduct());
+    dispatch(getListTag());
+  }, [dispatch]);
 
   return (
     <div className="container">
+      <SearchProduct />
+
       <div className="tags-wrapper">
         <div className="tags">
-          <div>Tags : </div>
-          {tags.map((value, index) => {
-            return (
-              <span key={index} className="card-text-tags">
-                <i className="fa fa-tags"></i>
-                {" " + value.name + " "}
-              </span>
-            );
-          })}
+          <div className="tags-title">Tags :</div>
+          {getListTagResult ? (
+            getListTagResult.map((tag) => {
+              return <Tag key={tag._id} tag={tag} />;
+            })
+          ) : getListTagLoading ? (
+            <p>Loading . . .</p>
+          ) : (
+            <p>{getListTagError ? getListTagError : "data kosong"}</p>
+          )}
         </div>
       </div>
+
       <div className="row all-food">
-        {foods.map((food) => (
-          <FoodCard key={food._id} food={food} />
-        ))}
+        {getListProductResult ? (
+          getListProductResult.map((product) => {
+            return <FoodCard key={product._id} product={product} />;
+          })
+        ) : getListProductLoading ? (
+          <p>Loading . . .</p>
+        ) : (
+          <p>{getListProductError ? getListProductError : "data kosong"}</p>
+        )}
       </div>
     </div>
   );
