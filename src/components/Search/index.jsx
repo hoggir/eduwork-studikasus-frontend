@@ -3,25 +3,28 @@ import { useDispatch } from "react-redux";
 import { getListProduct } from "../../actions/productAction";
 
 function SearchProduct() {
-    
-    const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        //console.log(searchTerm)
-
-        dispatch(getListProduct({searchTerm: searchTerm}))
-        //setSearchTerm("");
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getListProduct({ searchTerm: searchTerm }));
+  };
 
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)} className="searchForm">
-        <input className="form-control" type="search" placeholder="Search..." value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)} />
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <input
+          className="form-control"
+          type="search"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );
