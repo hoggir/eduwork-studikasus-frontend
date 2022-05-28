@@ -32,7 +32,6 @@ export const getListProduct = (data) => {
         });
     };
 
-    //loading
     dispatch({
       type: GET_LIST_PRODUCT,
       payload: {
@@ -54,8 +53,6 @@ export const getListProduct = (data) => {
       } else if (tagKey) {
         getFoods(`http://localhost:3000/api/products?tags[]=${tagKey}`);
       } else {
-        console.log("data dengan search");
-        //getFoods(`http://localhost:3000/api/products?q=${searchKey}`);
         getFoods("http://localhost:3000/api/products/");
       }
     } else {
