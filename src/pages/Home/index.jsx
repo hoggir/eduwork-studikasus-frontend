@@ -6,20 +6,19 @@ import { getListProduct } from "../../actions/productAction";
 import { getListTag } from "../../actions/tagAction";
 import Tag from "../../components/Tags";
 import SearchProduct from "../../components/Search";
+import Jumbotron from "../../components/Jumbotron";
 
 function Home() {
   const { getListTagResult, getListTagLoading, getListTagError } = useSelector(
     (state) => state.TagReducer
   );
-  //console.log(getListTagResult);
+
   const { getListProductResult, getListProductLoading, getListProductError } =
     useSelector((state) => state.ProductReducer);
-  //console.log(getListProductResult);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //panggil action get product
-    console.log("1. use effect com did mount");
     dispatch(getListProduct());
     dispatch(getListTag());
   }, [dispatch]);
@@ -27,6 +26,8 @@ function Home() {
   return (
     <div className="container">
       <SearchProduct />
+
+      <Jumbotron />
 
       <div className="tags-wrapper">
         <div className="tags">

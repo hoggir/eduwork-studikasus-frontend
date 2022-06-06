@@ -7,6 +7,7 @@ function SearchProduct() {
 
   const dispatch = useDispatch();
 
+  // eslint-disable-next-line no-use-before-define
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getListProduct({ searchTerm: searchTerm }));
@@ -22,7 +23,7 @@ function SearchProduct() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary oke">
           Submit
         </button>
       </form>

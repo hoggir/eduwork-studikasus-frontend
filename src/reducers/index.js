@@ -4,5 +4,5 @@ import TagReducer from './tag';
 
 export default combineReducers({
     ProductReducer,
-    TagReducer
+    TagReducer,
 })
