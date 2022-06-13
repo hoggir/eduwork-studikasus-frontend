@@ -1,29 +1,30 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-// import { Navigate } from "react-router-dom";
-import { AuthContext } from "../../App";
-import ProfileComp from "../../components/Profile";
+import React, { useEffect, useState } from "react";
+import NotLogin from "../../components/NotLogin";
+import Sidebar from "../../components/Sidebar";
 
 const API = "http://localhost:3000/auth";
 
 function Profile() {
-  const { state } = useContext(AuthContext);
   const [user, setUser] = useState({});
+  var token = JSON.parse(localStorage.getItem("token"));
 
   const fetchData = () => {
     var config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + state.token,
+        Authorization: "Bearer " + token,
       },
     };
 
     axios
       .get(API + "/me", config)
       .then((res) => {
+        //console.log(res.data);
         setUser(res.data);
       })
       .catch((e) => {
+        console.log(e);
       });
   };
 
@@ -32,14 +33,16 @@ function Profile() {
     // eslint-disable-next-line
   }, []);
 
-  // if (!state.isAuth) {
-  //   return <Navigate to="/" />;
-  // }
-
+  if (user.error) {
+    return (
+      <div className="container">
+        <NotLogin />
+      </div>
+    );
+  }
   return (
-    <div>
-      <p>{user.full_name}</p>
-      <ProfileComp />
+    <div className="container">
+      <Sidebar user={user}/>
     </div>
   );
 }

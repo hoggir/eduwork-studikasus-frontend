@@ -1,0 +1,28 @@
+.addresses-wrapper{
+    background-color: whitesmoke;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addresses-desc {
+    padding: 10px 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.addresses-name {
+    font-weight: 600;
+}
+
+.addresses-btn-wrapper {
+    padding: 0 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.addresses-btn-wrapper .btn-danger {
+    margin-left: 10px;
+}

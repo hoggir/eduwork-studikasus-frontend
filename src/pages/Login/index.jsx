@@ -1,21 +1,24 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import "./index.css";
-import { AuthContext } from "../../App";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../actions/userAction";
 
 const qs = require("query-string");
 const api = "http://localhost:3000/auth";
 
 function LoginPage() {
-  const { dispatch } = useContext(AuthContext);
+  //const { dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
 
   const initialState = {
     email: "",
     password: "",
-    isSubmitting: false,
+    loading: false,
     errorMessage: null,
+    token: null,
   };
 
   const Navigate = useNavigate();
@@ -33,9 +36,12 @@ function LoginPage() {
     event.preventDefault();
     setData({
       ...data,
-      isSubmitting: true,
+      loading: true,
       errorMessage: null,
+      token: null,
     });
+
+    //dispatch(loginUser(data));
 
     const requestBody = {
       email: data.email,
@@ -52,25 +58,21 @@ function LoginPage() {
       .post(api + "/login", qs.stringify(requestBody), config)
       .then((res) => {
         if (res.data.error === 1) {
+          //console.log(res)
           setData({
             ...data,
-            isSubmitting: false,
+            loading: false,
             errorMessage: res.data.message,
           });
         } else {
-          dispatch({
-            type: "LOGIN",
-            payload: res.data,
-          });
+          //console.log(res);
+          dispatch(loginUser({ res: res }));
+          alert(res.data.message);
           Navigate("/");
         }
       })
       .catch((error) => {
-        dispatch({
-          type: "LOGIN",
-          payload: false,
-          errorMessage: error.message,
-        });
+        console.log(error);
       });
   };
 
@@ -106,8 +108,8 @@ function LoginPage() {
           </div>
         )}
 
-        <Button disabled={data.isSubmitting}>
-          {data.isSubmitting ? "...Loading" : "Login"}
+        <Button disabled={data.loading}>
+          {data.loading ? "...Loading" : "Login"}
         </Button>
       </Form>
     </div>

@@ -1,43 +1,47 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../App";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../actions/loginAction";
 import axios from "axios";
 import "./index.css";
 
 const qs = require("query-string");
 
-const API = "http://localhost:3000/auth";
-
 function Navigation() {
-  const { state, dispatch } = useContext(AuthContext);
+  //const { user } = useSelector((state) => state.LoginReducer);
+  const { isAuth } = useSelector((state) => state.UserReducer);
+  const API = "http://localhost:3000/auth";
+  var token = JSON.parse(localStorage.getItem("token"));
+  var isLogin = JSON.parse(localStorage.getItem("login"));
+  const dispatch = useDispatch();
+
+  if (isAuth) {
+    localStorage.setItem("login", true);
+  } 
 
   const onClickLogout = () => {
     const requestBody = {
-      token: state.token,
+      token: token,
     };
-
     var config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: "Bearer " + state.token,
+        Authorization: "Bearer " + token,
       },
     };
-
     axios
       .post(API + "/logout", qs.stringify(requestBody), config)
       .then((res) => {
-        console.log(res);
-        dispatch({
-          type: "LOGOUT",
-          payload: res.data,
-        });
+        //console.log(res);
+        localStorage.clear();
+        dispatch(logoutUser({ res: res }));
+        alert(res.data.message);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  if (!state.isAuth) {
+  if (!isLogin) {
     return (
       <div>
         <nav className="navbar navbar-expand-lg shadow-sm p-3 mb-5">
@@ -66,6 +70,7 @@ function Navigation() {
           <Link to={"/"} className="navbar-brand">
             POS
           </Link>
+
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">

@@ -1,4 +1,4 @@
-import { REGISTER_SUCCESS } from "../../actions/authAction";
+import { REGISTER_SUCCESS } from "../../actions/authActionReg";
 
 const initialState = {
     getListUserResult: false,
