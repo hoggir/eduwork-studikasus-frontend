@@ -7,16 +7,15 @@ import "./index.css";
 const qs = require("query-string");
 
 function Navigation() {
-  //const { user } = useSelector((state) => state.LoginReducer);
-  const { isAuth } = useSelector((state) => state.UserReducer);
+  const { user } = useSelector((state) => state.LoginReducer);
   const API = "http://localhost:3000/auth";
   var token = JSON.parse(localStorage.getItem("token"));
   var isLogin = JSON.parse(localStorage.getItem("login"));
   const dispatch = useDispatch();
 
-  if (isAuth) {
+  if (token) {
     localStorage.setItem("login", true);
-  } 
+  }
 
   const onClickLogout = () => {
     const requestBody = {
@@ -32,7 +31,6 @@ function Navigation() {
       .post(API + "/logout", qs.stringify(requestBody), config)
       .then((res) => {
         //console.log(res);
-        localStorage.clear();
         dispatch(logoutUser({ res: res }));
         alert(res.data.message);
       })
@@ -70,7 +68,7 @@ function Navigation() {
           <Link to={"/"} className="navbar-brand">
             POS
           </Link>
-
+          {user && <div className="nav-name">{user.full_name}</div>}
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">

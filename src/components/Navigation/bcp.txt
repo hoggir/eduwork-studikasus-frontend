@@ -1,27 +1,44 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import "./index.css";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../actions/loginAction";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../actions/userAction";
 
 const qs = require("query-string");
 const api = "http://localhost:3000/auth";
 
 function LoginPage() {
-  //const { dispatch } = useContext(AuthContext);
+  const Navigate = useNavigate();
   const dispatch = useDispatch();
+  const {
+    userLoginResult,
+    userLoginLoading,
+    userLoginError,
+    userLoginisAuth,
+    userLoginToken,
+  } = useSelector((state) => state.UserReducer);
+  //console.log(userLoginResult);
+
+  useEffect(() => {
+    if (userLoginError) {
+      setData({
+        ...data,
+        errorMessage: userLoginError,
+        loading: userLoginLoading,
+      });
+    }
+    //dispatch(loginUser());
+    //eslint-disable-next-line
+  }, [userLoginError, dispatch]);
 
   const initialState = {
     email: "",
     password: "",
-    isSubmitting: false,
+    loading: false,
     errorMessage: null,
     token: null,
   };
-
-  const Navigate = useNavigate();
 
   const [data, setData] = useState(initialState);
 
@@ -36,44 +53,14 @@ function LoginPage() {
     event.preventDefault();
     setData({
       ...data,
-      isSubmitting: true,
+      loading: true,
       errorMessage: null,
       token: null,
     });
-
-    //dispatch(loginUser(data));
-
-    const requestBody = {
-      email: data.email,
-      password: data.password,
-    };
-
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    };
-
-    axios
-      .post(api + "/login", qs.stringify(requestBody), config)
-      .then((res) => {
-        if (res.data.error === 1) {
-          //console.log(res)
-          setData({
-            ...data,
-            isSubmitting: false,
-            errorMessage: res.data.message,
-          });
-        } else {
-          //console.log(res);
-          dispatch(loginUser({ res: res }));
-          alert(res.data.message);
-          Navigate("/");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    dispatch(loginUser(data, Navigate));
+    if (userLoginResult) {
+      alert("berhasil Login");
+    }
   };
 
   return (
@@ -108,8 +95,8 @@ function LoginPage() {
           </div>
         )}
 
-        <Button disabled={data.isSubmitting}>
-          {data.isSubmitting ? "...Loading" : "Login"}
+        <Button disabled={data.loading}>
+          {data.loading ? "...Loading" : "Login"}
         </Button>
       </Form>
     </div>

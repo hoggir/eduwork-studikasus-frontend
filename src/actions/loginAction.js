@@ -1,6 +1,28 @@
 import axios from "axios";
+export const LOGIN_SUCCESS= "LOGIN_SUCCESS";
 export const LOGOUT_SUCCESS= "LOGOUT_SUCCESS";
 export const GET_USER = "GET_USER";
+
+export const loginUser = (dataLogin) => {
+  return (dispatch) => {
+    //console.log(dataLogin.res)
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: {
+        loading: true,
+        data: false,
+      },
+    });
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: {
+        loading: false,
+        data: dataLogin.res.data,
+      },
+    });
+  };
+};
 
 export const logoutUser = (dataLogout) => {
   return (dispatch) => {

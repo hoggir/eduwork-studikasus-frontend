@@ -1,3 +1,4 @@
+import { LOGIN_SUCCESS } from "../../actions/loginAction";
 import { LOGOUT_SUCCESS } from "../../actions/loginAction";
 import { GET_USER } from "../../actions/loginAction";
 
@@ -9,6 +10,14 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOGIN_SUCCESS:
+      localStorage.setItem("token", JSON.stringify(action.payload.data.token));
+      return {
+        ...state,
+        user: action.payload.data.user,
+        token: action.payload.data.token,
+        isAuth: true,
+      };
     case LOGOUT_SUCCESS:
       localStorage.clear();
       return {

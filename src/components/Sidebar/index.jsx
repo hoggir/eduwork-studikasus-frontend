@@ -5,16 +5,8 @@ import Me from "../Me";
 import Order from "../Order";
 import DeliveryAddresses from "../../pages/DeliveryAddresses/GetDeliveryAddresses";
 import AddAddresses from "../../pages/DeliveryAddresses/AddDeliveryAddresses";
-import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../actions/loginAction";
-import axios from "axios";
-
-const qs = require("query-string");
 
 function Sidebar(user) {
-  var token = JSON.parse(localStorage.getItem("token"));
-  const API = "http://localhost:3000/auth";
-  const dispatch = useDispatch();
   const me = user.user;
   const [page, setPage] = useState("me");
   //console.log(page);
@@ -166,28 +158,6 @@ function Sidebar(user) {
   }
 
   if (page === "logout") {
-    console.log(token)
-    const requestBody = {
-      token: token,
-    };
-    var config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: "Bearer " + token,
-      },
-    };
-
-
-    // axios
-    //   .post(API + "/logout", qs.stringify(requestBody), config)
-    //   .then((res) => {
-    //     //console.log(res);
-    //     dispatch(logoutUser({ res: res }));
-    //     alert(res.data.message);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
   }
 }
 
