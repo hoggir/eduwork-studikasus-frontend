@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import "./index.css";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../actions/loginAction";
+import { loginUser } from "../../actions/userAction";
 
 const qs = require("query-string");
 const api = "http://localhost:3000/auth";

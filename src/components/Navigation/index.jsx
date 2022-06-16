@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../actions/loginAction";
+import { logoutUser } from "../../actions/userAction";
 import axios from "axios";
 import "./index.css";
 
 const qs = require("query-string");
 
 function Navigation() {
-  const { user } = useSelector((state) => state.LoginReducer);
+  // eslint-disable-next-line
+  // const {cartResult} = useSelector((state) => state.CartReducer);
+  // console.log(cartResult);
+  const { user } = useSelector((state) => state.UserReducer);
   const API = "http://localhost:3000/auth";
   var token = JSON.parse(localStorage.getItem("token"));
   var isLogin = JSON.parse(localStorage.getItem("login"));

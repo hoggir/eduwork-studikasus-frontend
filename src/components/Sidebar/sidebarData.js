@@ -19,9 +19,4 @@ export const sidebarData = [
     icon: <DeliveryDiningIcon />,
     link: "delivery-addresses",
   },
-  {
-    title: "Logout",
-    icon: <DeliveryDiningIcon />,
-    link: "logout",
-  },
 ];

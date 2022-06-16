@@ -2,71 +2,31 @@ import axios from "axios";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const GET_USER = "GET_USER";
 const qs = require("query-string");
 
-export const loginUser = (dataLogin, Navigate) => {
+export const loginUser = (dataLogin) => {
   return (dispatch) => {
-    //console.log(dataLogin);
+    //console.log(dataLogin.res)
     dispatch({
       type: LOGIN_SUCCESS,
       payload: {
         loading: true,
         data: false,
-        errorMessage: false,
-        isAuth: false,
-        token: null,
       },
     });
 
-    const api = "http://localhost:3000/auth";
-
-    const requestBody = {
-      email: dataLogin.email,
-      password: dataLogin.password,
-    };
-
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: {
+        loading: false,
+        data: dataLogin.res.data,
       },
-    };
-
-    axios
-      .post(api + "/login", qs.stringify(requestBody), config)
-      .then((res) => {
-        //console.log(res);
-        if (res.data.error === 1) {
-          dispatch({
-            type: LOGIN_SUCCESS,
-            payload: {
-              loading: false,
-              data: false,
-              errorMessage: res.data.message,
-              isAuth: false,
-              token: false,
-            },
-          });
-        } else {
-          dispatch({
-            type: LOGIN_SUCCESS,
-            payload: {
-              loading: false,
-              data: res.data,
-              errorMessage: false,
-              isAuth: true,
-              token: res.data.token,
-            },
-          });
-          Navigate("/");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    });
   };
 };
 
-export const logoutUser = () => {
+export const logoutUser = (dataLogout) => {
   return (dispatch) => {
     dispatch({
       type: LOGOUT_SUCCESS,
@@ -76,33 +36,58 @@ export const logoutUser = () => {
       },
     });
 
-    const API = "http://localhost:3000/auth";
+    dispatch({
+      type: LOGOUT_SUCCESS,
+      payload: {
+        loading: false,
+        data: dataLogout.res.data,
+      },
+    });
+  };
+};
+
+export const getUser = () => {
+  return (dispatch) => {
     var token = JSON.parse(localStorage.getItem("token"));
-    console.log(token);
-    const requestBody = {
-      token: token,
-    };
-    var config = {
+
+    const config = {
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
     };
+
+    dispatch({
+      type: GET_USER,
+      payload: {
+        loading: true,
+        data: false,
+      },
+    });
+
+    const API = "http://localhost:3000/auth";
+
     axios
-      .post(API + "/logout", qs.stringify(requestBody), config)
-      .then((res) => {
-        console.log(res);
-        console.log(token);
+      .get(API + "/me", config)
+      .then((response) => {
+        //console.log(response.data);
         dispatch({
-          type: LOGOUT_SUCCESS,
+          type: GET_USER,
           payload: {
             loading: false,
-            data: res.data,
+            data: response.data,
           },
         });
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        dispatch({
+          type: GET_USER,
+          payload: {
+            loading: false,
+            data: false,
+            errorMessage: error.message,
+          },
+        });
       });
   };
 };

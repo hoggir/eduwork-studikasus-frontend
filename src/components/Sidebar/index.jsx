@@ -5,6 +5,7 @@ import Me from "../Me";
 import Order from "../Order";
 import DeliveryAddresses from "../../pages/DeliveryAddresses/GetDeliveryAddresses";
 import AddAddresses from "../../pages/DeliveryAddresses/AddDeliveryAddresses";
+//import EditAddresses from "../../pages/DeliveryAddresses/EditDeliveryAddresses";
 
 function Sidebar(user) {
   const me = user.user;
@@ -155,9 +156,6 @@ function Sidebar(user) {
         </div>
       </div>
     );
-  }
-
-  if (page === "logout") {
   }
 }
 

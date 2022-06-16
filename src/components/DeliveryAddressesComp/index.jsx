@@ -1,11 +1,13 @@
 import React from "react";
 import "./index.css";
 import { useDispatch } from "react-redux";
-import { deleteDeliveryAddresses, detailDeliveryAddresses } from "../../actions/addressesAction";
+import {
+  deleteDeliveryAddresses,
+  detailDeliveryAddresses,
+} from "../../actions/addressesAction";
 import { Link } from "react-router-dom";
 
 function DeliveryAddressesComp({ addresses }) {
-  //console.log(addresses);
   const dispatch = useDispatch();
 
   return (
@@ -14,14 +16,18 @@ function DeliveryAddressesComp({ addresses }) {
         <div className="addresses-desc">
           <div className="addresses-name">{addresses.name}</div>
           <div className="addresses-detail">
-            Kel. {addresses.kelurahan}, Kec. {addresses.kecamatan}, Kab.{" "}
+            Kel. {addresses.kelurahan}, Kec. {addresses.kecamatan},{" "}
             {addresses.kabupaten}, {addresses.provinsi}
           </div>
-          <div>{addresses._id}</div>
         </div>
         <div className="addresses-btn-wrapper">
           <Link to={"/edit-delivery-addresses"}>
-            <button onClick={() => dispatch(detailDeliveryAddresses(addresses))} className="btn btn-primary">Edit</button>
+            <button
+              onClick={() => dispatch(detailDeliveryAddresses(addresses))}
+              className="btn btn-primary"
+            >
+              Edit
+            </button>
           </Link>
 
           <button

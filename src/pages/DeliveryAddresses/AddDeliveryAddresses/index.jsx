@@ -8,7 +8,7 @@ import {
   getKelurahan,
 } from "../../../actions/addressAPI";
 
-import { getUser } from "../../../actions/loginAction";
+import { getUser } from "../../../actions/userAction";
 const qs = require("query-string");
 
 function AddAddresses() {
@@ -23,7 +23,7 @@ function AddAddresses() {
     getKelurahanLoading,
   } = useSelector((state) => state.alamatIndoAPI);
 
-  const { user } = useSelector((state) => state.LoginReducer);
+  const { user } = useSelector((state) => state.UserReducer);
 
   const dispatch = useDispatch();
 
