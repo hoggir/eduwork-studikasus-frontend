@@ -3,14 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../actions/userAction";
 import axios from "axios";
 import "./index.css";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useEffect, useState } from "react";
 
 const qs = require("query-string");
 
 function Navigation() {
-  // eslint-disable-next-line
-  // const {cartResult} = useSelector((state) => state.CartReducer);
-  // console.log(cartResult);
   const { user } = useSelector((state) => state.UserReducer);
+
+  const { cart } = useSelector((state) => state.Reducer);
+  //console.log(cart)
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += item.qty;
+    });
+    setCartCount(count);
+  }, [cart, cartCount]);
+
   const API = "http://localhost:3000/auth";
   var token = JSON.parse(localStorage.getItem("token"));
   var isLogin = JSON.parse(localStorage.getItem("login"));
@@ -75,9 +87,18 @@ function Navigation() {
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to={"/cart"} className="nav-link">
-                  Cart
-                </Link>
+                {cartCount > 0 ? (
+                  <Link to={"/cart"} className="nav-link">
+                    <ShoppingCartIcon />{" "}
+                    <div className="nav-link-cart-icon">
+                      <div className="nav-link-cart-icon-text">{cartCount}</div>
+                    </div>
+                  </Link>
+                ) : (
+                  <Link to={"/cart"} className="nav-link">
+                    <ShoppingCartIcon />
+                  </Link>
+                )}
               </li>
               <li className="nav-item">
                 <Link to={"/profile"} className="nav-link">

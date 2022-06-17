@@ -1,20 +1,9 @@
-//import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../actions/cartAction";
-//import { useSelector } from "react-redux";
 import "./index.css";
 
 function FoodCard({ product }) {
-  product.quantity = 1;
-  //const { cart } = useSelector((state) => state.Reducer);
-  const cart = useSelector((state) => state.Reducer);
-  //console.log(cart);
   const dispatch = useDispatch();
-  //const [quantity, setQuantity] = useState(1);
-
-  //const initialState = [{ id: "", name: "", price: "", quantity: 0 }];
-
-  //const [food, setFood] = useState([initialState]);
 
   function convertToRupiah(angka) {
     var rupiah = "";
@@ -56,7 +45,9 @@ function FoodCard({ product }) {
           <p className="card-text">{convertToRupiah(product.price)}</p>
           <button
             className="btn btn-primary"
-            onClick={() => dispatch({ type: "ADD_CART", payload: product })}
+            onClick={() => dispatch(addToCart(product))}
+            //onClick={() => dispatch({ type: "ADD_CART", payload: product })}
+            //onClick={() => dispatch({ type: "ADD_TO_CART", payload: product })}
           >
             <i className="fa fa-cart-plus"></i>
           </button>

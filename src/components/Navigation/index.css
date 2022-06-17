@@ -4,8 +4,22 @@
 }
 
 .nav-link {
+    display: flex;
+    flex-direction: row;
     color: black !important;
     font-family: 'Montserrat', sans-serif;
+}
+
+.nav-link-cart-icon {
+    border-radius: 0;
+    background-color: red;
+    align-items: center !important;
+}
+
+.nav-link-cart-icon-text {
+    padding: 0px;
+    text-align: center;
+    align-items: center !important;
 }
 
 .nav-name {

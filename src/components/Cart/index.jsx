@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { incQty, decQty, removeFromCart } from "../../actions/cartAction";
 import "./index.css";
 
 function Cart() {
-  const cart = useSelector((state) => state.Reducer);
-  console.log(cart);
+  const { cart } = useSelector((state) => state.Reducer);
+  //console.log(cart);
   const dispatch = useDispatch();
+
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
+
+  useEffect(() => {
+    let price = 0;
+    let items = 0;
+    cart.forEach((item) => {
+      items += item.qty;
+      price += item.qty * item.price;
+    });
+
+    setTotalPrice(price);
+    setTotalItems(items);
+  }, [cart, totalPrice, totalItems, setTotalItems, setTotalPrice]);
+  console.log(totalPrice);
+  console.log(totalItems);
 
   function convertToRupiah(angka) {
     var rupiah = "";
@@ -32,7 +50,7 @@ function Cart() {
         <div className="row all-cart">
           {cart.map((item) => {
             return (
-              <div className="cart-item">
+              <div key={item._id} className="cart-item">
                 <div className="cart-left">
                   <img
                     className="card-img"
@@ -40,33 +58,32 @@ function Cart() {
                     alt=""
                   />
                   <div className="cart-desc">
+                    <div className="cart-title">{item._id}</div>
                     <div className="cart-title">{item.name}</div>
                     <div className="cart-description">{item.description}</div>
                     <div className="cart-price">
                       {convertToRupiah(item.price)}
                     </div>
                     <div className="cart-subtotal">
-                      Subtotal: {convertToRupiah(item.price * item.quantity)}
+                      Subtotal: {convertToRupiah(item.price * item.qty)}
                     </div>
                   </div>
                 </div>
                 <div className="cart-right">
                   <button
                     className="btn btn-primary"
-                    onClick={() =>
-                      dispatch({ type: "INCREASE", payload: item })
-                    }
+                    onClick={() => dispatch(incQty(item))}
                   >
                     +
                   </button>
-                  <div className="text-center mt-1 mb-1">{item.quantity}</div>
+                  <div className="text-center mt-1 mb-1">{item.qty}</div>
                   <button
                     className="btn btn-primary"
                     onClick={() => {
-                      if (item.quantity > 1) {
-                        dispatch({ type: "DECREASE", payload: item });
+                      if (item.qty > 1) {
+                        dispatch(decQty(item));
                       } else {
-                        dispatch({ type: "REMOVE", payload: item });
+                        dispatch(removeFromCart(item));
                       }
                     }}
                   >
@@ -74,7 +91,7 @@ function Cart() {
                   </button>
                   <button
                     className="btn btn-danger"
-                    onClick={() => dispatch({ type: "REMOVE", payload: item })}
+                    onClick={() => dispatch(removeFromCart(item))}
                   >
                     Hapus
                   </button>
@@ -83,7 +100,16 @@ function Cart() {
             );
           })}
         </div>
-        {total > 0 && <h2>Total Harga: {convertToRupiah(total)}</h2>}
+        <div className="cart-sum-wrapper col-4">
+          <div className="cart-sum">
+            <p className="cart-sum-name">Ringkasan belanja</p>
+            <div className="cart-total text-muted">
+              <p>Total: ({totalItems} barang)</p>
+              <p>{convertToRupiah(totalPrice)}</p>
+            </div>
+            <button className="btn">Beli ({totalItems})</button>
+          </div>
+        </div>
       </div>
     </div>
   );
