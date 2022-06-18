@@ -4,6 +4,7 @@ import FoodCard from "../../components/FoodCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getListProduct } from "../../actions/productAction";
 import { getListTag } from "../../actions/tagAction";
+import { loadCurrentItem } from "../../actions/cartAction";
 import Tag from "../../components/Tags";
 import SearchProduct from "../../components/Search";
 import Jumbotron from "../../components/Jumbotron";
@@ -13,6 +14,9 @@ function Home() {
     (state) => state.TagReducer
   );
 
+  const { cart } = useSelector((state) => state.Reducer);
+  //console.log(cart);
+
   const { getListProductResult, getListProductLoading, getListProductError } =
     useSelector((state) => state.ProductReducer);
 
@@ -21,7 +25,15 @@ function Home() {
   useEffect(() => {
     dispatch(getListProduct());
     dispatch(getListTag());
+    dispatch(loadCurrentItem());
   }, [dispatch]);
+
+  if (cart.length > 0) {
+    localStorage.setItem("cart-item", JSON.stringify(cart));
+    var retrievedData = localStorage.getItem("cart-item");
+    var movies2 = JSON.parse(retrievedData);
+    console.log(movies2);
+  }
 
   return (
     <div className="container">

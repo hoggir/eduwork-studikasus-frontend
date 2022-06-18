@@ -22,8 +22,8 @@ function Cart() {
     setTotalPrice(price);
     setTotalItems(items);
   }, [cart, totalPrice, totalItems, setTotalItems, setTotalPrice]);
-  console.log(totalPrice);
-  console.log(totalItems);
+  //console.log(totalPrice);
+  //console.log(totalItems);
 
   function convertToRupiah(angka) {
     var rupiah = "";
@@ -38,11 +38,6 @@ function Cart() {
         .join("")
     );
   }
-
-  const addition = (acc, currentvalue) => {
-    return acc + currentvalue.price * currentvalue.quantity;
-  };
-  const total = cart.reduce(addition, 0);
 
   return (
     <div className="container">
@@ -116,30 +111,3 @@ function Cart() {
 }
 
 export default Cart;
-
-{
-  /* <div className="row all-food">
-        {cart.map((item) => {
-          return (
-            <div  key={item._id} className="col-md-4">
-              <div className="card">
-                <img
-                  className="news-img"
-                  src={`http://localhost:3000/images/products/${item.image_url}`}
-                  alt=""
-                />
-                <div className="card-body">
-                  <h4 className="card-title">{item.name}</h4>
-                  <div className="card-text">{item.description}</div>
-                  <div className="tags-wrapper"></div>
-                  <p className="card-text">{item.price}</p>
-                  <button className="btn btn-primary">
-                    <i className="fa fa-cart-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div> */
-}

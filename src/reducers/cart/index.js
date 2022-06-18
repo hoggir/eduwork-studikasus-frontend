@@ -10,6 +10,7 @@ const INITIAL_STATE = {
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
+  //console.log(state.cart);
   switch (action.type) {
     case ADD_TO_CART:
       const inCart = state.cart.find((item) =>
