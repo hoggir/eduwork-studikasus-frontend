@@ -11,17 +11,17 @@ const qs = require("query-string");
 function Navigation() {
   const { user } = useSelector((state) => state.UserReducer);
 
-  const { cart } = useSelector((state) => state.Reducer);
-  //console.log(cart)
+  const { cartItem } = useSelector((state) => state.Reducer);
+  //console.log(cartItem);
   const [cartCount, setCartCount] = useState(0);
 
-  // useEffect(() => {
-  //   let count = 0;
-  //   cart.forEach((item) => {
-  //     count += item.qty;
-  //   });
-  //   setCartCount(count);
-  // }, [cart, cartCount]);
+  useEffect(() => {
+    let count = 0;
+    cartItem.forEach((item) => {
+      count += item.quantity;
+    });
+    setCartCount(count);
+  }, [cartItem, cartCount]);
 
   const API = "http://localhost:3000/auth";
   var token = JSON.parse(localStorage.getItem("token"));
@@ -89,8 +89,10 @@ function Navigation() {
               <li className="nav-item">
                 {cartCount > 0 ? (
                   <Link to={"/cart"} className="nav-link">
-                    <ShoppingCartIcon />
-                    <div className="nav-link-cart-icon"></div>
+                    <ShoppingCartIcon />{" "}
+                    <div className="nav-link-cart-icon">
+                      <div className="nav-link-cart-icon-text">{cartCount}</div>
+                    </div>
                   </Link>
                 ) : (
                   <Link to={"/cart"} className="nav-link">
