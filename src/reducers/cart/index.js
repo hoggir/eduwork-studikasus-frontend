@@ -6,57 +6,44 @@ import { LOAD_CURRENT_ITEM } from "../../actions/cartAction";
 
 const INITIAL_STATE = {
   cart: [],
-  currentItem: null,
+  cartItem: [],
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
-  //console.log(state.cart);
   switch (action.type) {
     case ADD_TO_CART:
-      const inCart = state.cart.find((item) =>
-        item._id === action.payload.id._id ? true : false
-      );
       return {
         ...state,
-        cart: inCart
-          ? state.cart.map((item) =>
-              item._id === action.payload.id._id
-                ? { ...item, qty: item.qty + 1 }
-                : item
-            )
-          : [...state.cart, { ...action.payload.id, qty: 1 }],
+        cart: action.payload.data,
+        cartItem: action.payload.cartItem,
       };
 
     case REMOVE_FROM_CART:
       return {
         ...state,
-        cart: state.cart.filter((item) => item._id !== action.payload.id._id),
+        cart: action.payload.data,
+        cartItem: action.payload.cartItem,
       };
 
     case INCREASE_QTY:
       return {
         ...state,
-        cart: state.cart.map((item) =>
-          item._id === action.payload.id._id
-            ? { ...item, qty: item.qty + 1 }
-            : item
-        ),
+        cart: action.payload.data,
+        cartItem: action.payload.cartItem,
       };
 
     case DECREASE_QTY:
       return {
         ...state,
-        cart: state.cart.map((item) =>
-          item._id === action.payload.id._id
-            ? { ...item, qty: item.qty - 1 }
-            : item
-        ),
+        cart: action.payload.data,
+        cartItem: action.payload.cartItem,
       };
 
     case LOAD_CURRENT_ITEM:
       return {
         ...state,
-        currentItem: action.payload,
+        cart: action.payload.data,
+        cartItem: action.payload.cartItem,
       };
 
     default:

@@ -1,9 +1,16 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../actions/cartAction";
 import "./index.css";
 
 function FoodCard({ product }) {
+  //console.log(product);
   const dispatch = useDispatch();
+
+  const initialState = {
+    ...product,
+    qty: 1,
+  };
 
   function convertToRupiah(angka) {
     var rupiah = "";
@@ -45,7 +52,7 @@ function FoodCard({ product }) {
           <p className="card-text">{convertToRupiah(product.price)}</p>
           <button
             className="btn btn-primary"
-            onClick={() => dispatch(addToCart(product))}
+            onClick={() => dispatch(addToCart(initialState))}
             //onClick={() => dispatch({ type: "ADD_CART", payload: product })}
             //onClick={() => dispatch({ type: "ADD_TO_CART", payload: product })}
           >

@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { incQty, decQty, removeFromCart } from "../../actions/cartAction";
+import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  incQty,
+  decQty,
+  removeFromCart,
+} from "../../actions/cartAction";
 import "./index.css";
 
-function Cart() {
-  const { cart } = useSelector((state) => state.Reducer);
-  //console.log(cart);
+function CartComp({ food }) {
   const dispatch = useDispatch();
 
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalItems, setTotalItems] = useState(0);
-
-  useEffect(() => {
-    let price = 0;
-    let items = 0;
-    cart.forEach((item) => {
-      items += item.qty;
-      price += item.qty * item.price;
-    });
-
-    setTotalPrice(price);
-    setTotalItems(items);
-  }, [cart, totalPrice, totalItems, setTotalItems, setTotalPrice]);
-  //console.log(totalPrice);
-  //console.log(totalItems);
+  const initialState = {
+    ...food,
+    qty: 1,
+  };
 
   function convertToRupiah(angka) {
     var rupiah = "";
@@ -40,74 +30,104 @@ function Cart() {
   }
 
   return (
-    <div className="container">
-      <div className="cart-wrapper">
-        <div className="row all-cart">
-          {cart.map((item) => {
-            return (
-              <div key={item._id} className="cart-item">
-                <div className="cart-left">
-                  <img
-                    className="card-img"
-                    src={`http://localhost:3000/images/products/${item.image_url}`}
-                    alt=""
-                  />
-                  <div className="cart-desc">
-                    <div className="cart-title">{item._id}</div>
-                    <div className="cart-title">{item.name}</div>
-                    <div className="cart-description">{item.description}</div>
-                    <div className="cart-price">
-                      {convertToRupiah(item.price)}
-                    </div>
-                    <div className="cart-subtotal">
-                      Subtotal: {convertToRupiah(item.price * item.qty)}
-                    </div>
-                  </div>
-                </div>
-                <div className="cart-right">
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => dispatch(incQty(item))}
-                  >
-                    +
-                  </button>
-                  <div className="text-center mt-1 mb-1">{item.qty}</div>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                      if (item.qty > 1) {
-                        dispatch(decQty(item));
-                      } else {
-                        dispatch(removeFromCart(item));
-                      }
-                    }}
-                  >
-                    -
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => dispatch(removeFromCart(item))}
-                  >
-                    Hapus
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div className="cart-sum-wrapper col-4">
-          <div className="cart-sum">
-            <p className="cart-sum-name">Ringkasan belanja</p>
-            <div className="cart-total text-muted">
-              <p>Total: ({totalItems} barang)</p>
-              <p>{convertToRupiah(totalPrice)}</p>
-            </div>
-            <button className="btn">Beli ({totalItems})</button>
+    <div className="cart-item">
+      <div className="cart-left">
+        <img
+          className="card-img"
+          src={`http://localhost:3000/images/products/${food.image_url}`}
+          alt=""
+        />
+        <div className="cart-desc">
+          <div className="cart-title">{food.name}</div>
+          <div className="cart-title">{food._id}</div>
+
+          <div className="cart-price">{convertToRupiah(food.price)}</div>
+          <div className="cart-subtotal">
+            Subtotal: {convertToRupiah(food.price * food.quantity)}
           </div>
         </div>
+      </div>
+      <div className="cart-right">
+        <button
+          onClick={() => dispatch(incQty(initialState))}
+          className="btn btn-primary"
+        >
+          +
+        </button>
+        <div className="text-center mt-1 mb-1">{food.quantity}</div>
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            if (food.quantity > 1) {
+              dispatch(decQty(initialState));
+            } else {
+              dispatch(removeFromCart(initialState));
+            }
+          }}
+        >
+          -
+        </button>
+        <button
+          className="btn btn-danger"
+          onClick={() => dispatch(removeFromCart(food))}
+        >
+          Hapus
+        </button>
       </div>
     </div>
   );
 }
 
-export default Cart;
+export default CartComp;
+
+// {cart.map((item) => {
+//   return (
+//     <div key={item._id} className="cart-item">
+//       <div className="cart-left">
+//         <img
+//           className="card-img"
+//           src={`http://localhost:3000/images/products/${item.image_url}`}
+//           alt=""
+//         />
+//         <div className="cart-desc">
+//           <div className="cart-title">{item._id}</div>
+//           <div className="cart-title">{item.name}</div>
+//           <div className="cart-description">{item.description}</div>
+//           <div className="cart-price">
+//             {convertToRupiah(item.price)}
+//           </div>
+//           <div className="cart-subtotal">
+//             Subtotal: {convertToRupiah(item.price * item.qty)}
+//           </div>
+//         </div>
+//       </div>
+//       <div className="cart-right">
+//         <button
+//           className="btn btn-primary"
+//           onClick={() => dispatch(incQty(item))}
+//         >
+//           +
+//         </button>
+//         <div className="text-center mt-1 mb-1">{item.qty}</div>
+//         <button
+//           className="btn btn-primary"
+//           onClick={() => {
+//             if (item.qty > 1) {
+//               dispatch(decQty(item));
+//             } else {
+//               dispatch(removeFromCart(item));
+//             }
+//           }}
+//         >
+//           -
+//         </button>
+//         <button
+//           className="btn btn-danger"
+//           onClick={() => dispatch(removeFromCart(item))}
+//         >
+//           Hapus
+//         </button>
+//       </div>
+//     </div>
+//   );
+// })}

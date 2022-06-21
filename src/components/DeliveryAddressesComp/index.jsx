@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 
 function DeliveryAddressesComp({ addresses }) {
+  console.log(addresses);
   const dispatch = useDispatch();
 
   return (

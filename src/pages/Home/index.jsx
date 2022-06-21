@@ -28,12 +28,13 @@ function Home() {
     dispatch(loadCurrentItem());
   }, [dispatch]);
 
-  if (cart.length > 0) {
-    localStorage.setItem("cart-item", JSON.stringify(cart));
-    var retrievedData = localStorage.getItem("cart-item");
-    var movies2 = JSON.parse(retrievedData);
-    console.log(movies2);
-  }
+  //add cart to localstorage
+  // if (cart.length > 0) {
+  //   localStorage.setItem("cart-item", JSON.stringify(cart));
+  //   var retrievedData = localStorage.getItem("cart-item");
+  //   var movies2 = JSON.parse(retrievedData);
+  //   console.log(movies2);
+  // }
 
   return (
     <div className="container">
