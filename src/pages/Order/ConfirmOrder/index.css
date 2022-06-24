@@ -1,0 +1,18 @@
+.order-total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-ongkir {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-checkout{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 800;
+}

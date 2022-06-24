@@ -8,7 +8,6 @@ const qs = require("query-string");
 
 export const addToCart = (item) => {
   return (dispatch) => {
-    console.log(item._id);
     var token = JSON.parse(localStorage.getItem("token"));
 
     const requestBody = {
@@ -28,7 +27,7 @@ export const addToCart = (item) => {
     axios
       .post(API + "/carts", qs.stringify(requestBody), config)
       .then((response) => {
-        //console.log(response.data.products);
+        //console.log(response);
         dispatch({
           type: ADD_TO_CART,
           payload: {
@@ -51,7 +50,6 @@ export const addToCart = (item) => {
 
 export const removeFromCart = (itemID) => {
   return (dispatch) => {
-    //console.log(itemID);
     var token = JSON.parse(localStorage.getItem("token"));
 
     const config = {
@@ -66,7 +64,6 @@ export const removeFromCart = (itemID) => {
     axios
       .delete(API + itemID.productId, config)
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: REMOVE_FROM_CART,
           payload: {
@@ -89,7 +86,6 @@ export const removeFromCart = (itemID) => {
 
 export const incQty = (item) => {
   return (dispatch) => {
-    console.log(item.productId);
     var token = JSON.parse(localStorage.getItem("token"));
 
     const requestBody = {
@@ -109,7 +105,7 @@ export const incQty = (item) => {
     axios
       .post(API + "/carts", qs.stringify(requestBody), config)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data)
         dispatch({
           type: INCREASE_QTY,
           payload: {
@@ -132,7 +128,6 @@ export const incQty = (item) => {
 
 export const decQty = (item) => {
   return (dispatch) => {
-    console.log(item.productId);
     var token = JSON.parse(localStorage.getItem("token"));
 
     const requestBody = {
@@ -152,7 +147,7 @@ export const decQty = (item) => {
     axios
       .post(API + "/carts", qs.stringify(requestBody), config)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         dispatch({
           type: DECREASE_QTY,
           payload: {
@@ -189,15 +184,15 @@ export const loadCurrentItem = () => {
     axios
       .get(API + "/carts", config)
       .then((response) => {
-        //console.log(response.data);
+        // eslint-disable-next-line
         {
+          // eslint-disable-next-line
           response.data.map((foos) => {
-            //console.log(foos);
             dispatch({
               type: LOAD_CURRENT_ITEM,
               payload: {
                 cartItem: foos.products,
-                data: response.data,
+                data: foos,
               },
             });
           });

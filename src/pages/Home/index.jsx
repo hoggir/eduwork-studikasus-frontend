@@ -14,9 +14,6 @@ function Home() {
     (state) => state.TagReducer
   );
 
-  const { cart } = useSelector((state) => state.Reducer);
-  //console.log(cart);
-
   const { getListProductResult, getListProductLoading, getListProductError } =
     useSelector((state) => state.ProductReducer);
 
@@ -27,14 +24,6 @@ function Home() {
     dispatch(getListTag());
     dispatch(loadCurrentItem());
   }, [dispatch]);
-
-  //add cart to localstorage
-  // if (cart.length > 0) {
-  //   localStorage.setItem("cart-item", JSON.stringify(cart));
-  //   var retrievedData = localStorage.getItem("cart-item");
-  //   var movies2 = JSON.parse(retrievedData);
-  //   console.log(movies2);
-  // }
 
   return (
     <div className="container">

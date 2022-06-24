@@ -1,32 +1,35 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../actions/userAction";
+import { loadCurrentItem } from "../../actions/cartAction";
 import axios from "axios";
 import "./index.css";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useEffect, useState } from "react";
-
 const qs = require("query-string");
 
 function Navigation() {
   const { user } = useSelector((state) => state.UserReducer);
-
+  const API = "http://localhost:3000/auth";
+  var token = JSON.parse(localStorage.getItem("token"));
+  var isLogin = JSON.parse(localStorage.getItem("login"));
+  const dispatch = useDispatch();
+  //console.log(user)
   const { cartItem } = useSelector((state) => state.Reducer);
   //console.log(cartItem);
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
     let count = 0;
-    cartItem.forEach((item) => {
-      count += item.quantity;
-    });
+    setCartCount(0);
+    if (cartItem) {
+      
+      cartItem.forEach((item) => {
+        count += item.quantity;
+      });
+    }
     setCartCount(count);
   }, [cartItem, cartCount]);
-
-  const API = "http://localhost:3000/auth";
-  var token = JSON.parse(localStorage.getItem("token"));
-  var isLogin = JSON.parse(localStorage.getItem("login"));
-  const dispatch = useDispatch();
 
   if (token) {
     localStorage.setItem("login", true);

@@ -12,7 +12,7 @@
 .cart-item {
     align-items: center;
     background-color: whitesmoke;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
 }

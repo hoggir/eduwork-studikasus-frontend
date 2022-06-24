@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../actions/cartAction";
 import "./index.css";
 
 function FoodCard({ product }) {
-  //console.log(product);
   const dispatch = useDispatch();
 
   const initialState = {

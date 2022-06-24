@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./index.css";
 import { sidebarData } from "./sidebarData";
 import Me from "../Me";
-import Order from "../Order";
+import Order from "../../pages/Order/GetOrder";
 import DeliveryAddresses from "../../pages/DeliveryAddresses/GetDeliveryAddresses";
 import AddAddresses from "../../pages/DeliveryAddresses/AddDeliveryAddresses";
 //import EditAddresses from "../../pages/DeliveryAddresses/EditDeliveryAddresses";
