@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCurrentItem } from "../../../actions/cartAction";
-import { addToOrder } from "../../../actions/orderAction";
+import { addToOrder, getOneOrder } from "../../../actions/orderAction";
 import { getUser } from "../../../actions/userAction";
 import { getDeliveryAddresses } from "../../../actions/addressesAction";
 import CartComp from "../../../components/Cart";
+//import { loadCurrentItem, removeFromCart } from "../../actions/cartAction";
 import "./index.css";
+import { Link, useNavigate } from "react-router-dom";
 
 function ConfirmOrder() {
   const { user } = useSelector((state) => state.UserReducer);
   const { cart, cartItem } = useSelector((state) => state.Reducer);
+  const { getOrderResult } = useSelector((state) => state.OrderReducer);
   const { getListAddressesResult } = useSelector(
     (state) => state.AddressesReducer
   );
@@ -22,6 +25,8 @@ function ConfirmOrder() {
   const [option, setOption] = useState("");
   const [ekspedisi, setEkspedisi] = useState([]);
   const [pekspedisi, setPekspedisi] = useState("");
+  const [invoice, setInvoice] = useState([]);
+  const Navigate = useNavigate();
 
   useEffect(() => {
     dispatch(loadCurrentItem());
@@ -52,6 +57,13 @@ function ConfirmOrder() {
     setTotalItems(items);
   }, [cartItem, totalPrice, totalItems, setTotalItems, setTotalPrice]);
 
+  useEffect(() => {
+    if (getOrderResult) {
+      dispatch(loadCurrentItem());
+    }
+    // eslint-disable-next-line
+  }, [getOrderResult, dispatch]);
+
   const addressHandleChange = (e) => {
     e.preventDefault();
     setOption(alamat[e.target.value]);
@@ -76,7 +88,13 @@ function ConfirmOrder() {
       totalPrice: totalPrice + pekspedisi.ongkos,
     };
 
+    const removecart = {
+      cart: [],
+    };
+
     dispatch(addToOrder(requestBody));
+    dispatch(loadCurrentItem(removecart));
+    Navigate("/");
   };
 
   function convertToRupiah(angka) {
@@ -174,10 +192,11 @@ function ConfirmOrder() {
                 <div>{convertToRupiah(totalPrice)}</div>
               )}
             </div>
-
-            <button className="btn mt-2" onClick={checkoutHandleClick}>
-              CHECKOUT
-            </button>
+            <Link to={"/invoice"}>
+              <button className="btn mt-2" onClick={checkoutHandleClick}>
+                CHECKOUT
+              </button>
+            </Link>
           </div>
         </div>
       </div>

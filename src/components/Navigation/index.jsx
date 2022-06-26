@@ -16,20 +16,24 @@ function Navigation() {
   const dispatch = useDispatch();
   //console.log(user)
   const { cartItem } = useSelector((state) => state.Reducer);
-  //console.log(cartItem);
+  const { getOrderResult } = useSelector((state) => state.OrderReducer);
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
     let count = 0;
     setCartCount(0);
     if (cartItem) {
-      
+      cartItem.forEach((item) => {
+        count += item.quantity;
+      });
+    }
+    if (getOrderResult) {
       cartItem.forEach((item) => {
         count += item.quantity;
       });
     }
     setCartCount(count);
-  }, [cartItem, cartCount]);
+  }, [cartItem, cartCount, getOrderResult]);
 
   if (token) {
     localStorage.setItem("login", true);

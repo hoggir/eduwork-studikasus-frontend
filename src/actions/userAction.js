@@ -57,20 +57,12 @@ export const getUser = () => {
       },
     };
 
-    dispatch({
-      type: GET_USER,
-      payload: {
-        loading: true,
-        data: false,
-      },
-    });
-
     const API = "http://localhost:3000/auth";
 
     axios
       .get(API + "/me", config)
       .then((response) => {
-        //console.log(response.data);
+        console.log(response.data);
         dispatch({
           type: GET_USER,
           payload: {

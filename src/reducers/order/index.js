@@ -1,4 +1,6 @@
 import { ADD_TO_ORDER } from "../../actions/orderAction";
+import { GET_ORDER } from "../../actions/orderAction";
+import { GET_ONE_ORDER } from "../../actions/orderAction";
 
 const INITIAL_STATE = {
   user: false,
@@ -10,6 +12,10 @@ const INITIAL_STATE = {
   totalItemPrice: false,
   totalItemQuantity: false,
   totalPrice: false,
+
+  getOrderResult: false,
+  removeCart: false,
+  getInvoice: false,
 };
 
 const orderReducer = (state = INITIAL_STATE, action) => {
@@ -26,8 +32,26 @@ const orderReducer = (state = INITIAL_STATE, action) => {
         totalItemPrice: action.payload.totalItemPrice,
         totalItemQuantity: action.payload.totalItemQuantity,
         totalPrice: action.payload.totalPrice,
+        getOrderResult: true,
+        orderID: action.payload.orderID,
       };
 
+    case GET_ORDER:
+      return {
+        ...state,
+        getOrderResult: action.payload.data,
+        errorMessage: action.payload.errorMessage,
+      };
+
+    case GET_ONE_ORDER:
+      return {
+        ...state,
+        getInvoice: action.payload.invoice,
+      };
+
+    // bill: response.data.bill,
+    //     delivery_fee: response.data.delivery_fee,
+    //     status: response.data.status,
     default:
       return state;
   }

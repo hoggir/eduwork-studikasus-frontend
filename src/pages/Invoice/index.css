@@ -1,0 +1,15 @@
+.invoice-wrapper {
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.invoice-main {
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.invoice-tag{
+    padding: 10px;
+    background-color: #eee;
+}

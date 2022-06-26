@@ -168,8 +168,9 @@ export const decQty = (item) => {
   };
 };
 
-export const loadCurrentItem = () => {
+export const loadCurrentItem = (data) => {
   return (dispatch) => {
+    //console.log(data);
     var token = JSON.parse(localStorage.getItem("token"));
 
     const config = {
@@ -188,13 +189,23 @@ export const loadCurrentItem = () => {
         {
           // eslint-disable-next-line
           response.data.map((foos) => {
-            dispatch({
-              type: LOAD_CURRENT_ITEM,
-              payload: {
-                cartItem: foos.products,
-                data: foos,
-              },
-            });
+            if (data) {
+              dispatch({
+                type: LOAD_CURRENT_ITEM,
+                payload: {
+                  cartItem: data.cart,
+                  data: data.cart,
+                },
+              });
+            } else {
+              dispatch({
+                type: LOAD_CURRENT_ITEM,
+                payload: {
+                  cartItem: foos.products,
+                  data: foos,
+                },
+              });
+            }
           });
         }
       })

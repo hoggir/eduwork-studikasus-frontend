@@ -112,6 +112,7 @@ export const detailDeliveryAddresses = (data) => {
 
 export const editDeliveryAddresses = (data) => {
   return (dispatch) => {
+    //console.log(data);
     dispatch({
       type: EDIT_DELIVERY_ADDRESSES,
       payload: {

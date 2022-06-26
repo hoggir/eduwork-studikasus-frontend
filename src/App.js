@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart";
+import Invoice from "./pages/Invoice";
 import Order from "./pages/Order/GetOrder";
 import ConfirmOrder from "./pages/Order/ConfirmOrder";
 import Navigation from "./components/Navigation";
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/order" element={<Order />} />
         <Route exact path="/confirm-order" element={<ConfirmOrder />} />
+        <Route exact path="/invoice" element={<Invoice />} />
         <Route
           exact
           path="/delivery-addresses"
