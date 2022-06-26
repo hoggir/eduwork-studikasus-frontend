@@ -7,11 +7,9 @@ import "./index.css";
 
 function Order() {
   const { getOrderResult } = useSelector((state) => state.OrderReducer);
-  //console.log(data);
   const dispatch = useDispatch();
 
   const [orders, setOrders] = useState([]);
-  console.log(orders);
 
   useEffect(() => {
     dispatch(getOrder());
@@ -25,12 +23,6 @@ function Order() {
 
   return (
     <div className="container">
-      <div className="get-order-wrapper">
-        {orders.length > 0 &&
-          orders.map((orderItem) => {
-            return <GetOrderComp key={orderItem._id} orderItem={orderItem} />;
-          })}
-      </div>
       <table className="styled-table">
         <thead>
           <tr>
@@ -47,11 +39,8 @@ function Order() {
         {orders.length > 0 &&
           orders.map((orderItem) => {
             return (
-              <tbody>
+              <tbody key={orderItem._id}>
                 <tr>
-                  {/* {orderItem.map((alamat) => {
-                    return <td>{alamat.provinsi}</td>;
-                  })} */}
                   <td>{orderItem._id}</td>
                   <td>pesanan</td>
                   <td>jumlah pesanan</td>

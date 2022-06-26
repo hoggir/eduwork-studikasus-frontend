@@ -6,7 +6,6 @@ import "./index.css";
 function Invoice() {
   const { getInvoice } = useSelector((state) => state.OrderReducer);
   const { user } = useSelector((state) => state.UserReducer);
-  //console.log(user);
   const [invoiceData, setInvoiceData] = useState("");
   const [userData, setUserData] = useState("");
 
@@ -24,6 +23,20 @@ function Invoice() {
       setUserData(user);
     }
   }, [getInvoice, user]);
+
+  function convertToRupiah(angka) {
+    var rupiah = "";
+    var angkarev = angka.toString().split("").reverse().join("");
+    for (var i = 0; i < angkarev.length; i++)
+      if (i % 3 === 0) rupiah += angkarev.substr(i, 3) + ".";
+    return (
+      "Rp. " +
+      rupiah
+        .split("", rupiah.length - 1)
+        .reverse()
+        .join("")
+    );
+  }
 
   return (
     <div className="container">
@@ -55,7 +68,13 @@ function Invoice() {
               <div className="ml-3">Total Pembelian</div>
             </div>
             <div className="col-6">
-              <div>{invoiceData.bill}</div>
+              {invoiceData ? (
+                <div>
+                  {convertToRupiah(invoiceData.bill)}
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
           <hr />
@@ -65,10 +84,24 @@ function Invoice() {
             </div>
             <div className="col-6">
               <div className="invoice-billed">
-                {userData ? <div>{userData.full_name}</div> : <div></div>}
-                {userData ? <div>{userData.email}</div> : <div></div>}
+                {userData ? (
+                  <div className="invoice-user-name">{userData.full_name}</div>
+                ) : (
+                  <div></div>
+                )}
+                {userData ? (
+                  <div className="invoice-user-email">{userData.email}</div>
+                ) : (
+                  <div></div>
+                )}
                 {invoiceData ? (
-                  <div>{invoiceData.delivery_address.name}</div>
+                  <div className="invoice-alamat">
+                    {invoiceData.delivery_address.provinsi},{" "}
+                    {invoiceData.delivery_address.kabupaten},{" "}
+                    {invoiceData.delivery_address.kecamatan},{" "}
+                    {invoiceData.delivery_address.kelurahan} (
+                    {invoiceData.delivery_address.name})
+                  </div>
                 ) : (
                   <div></div>
                 )}

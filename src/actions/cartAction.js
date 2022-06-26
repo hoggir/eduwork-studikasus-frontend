@@ -27,7 +27,6 @@ export const addToCart = (item) => {
     axios
       .post(API + "/carts", qs.stringify(requestBody), config)
       .then((response) => {
-        //console.log(response);
         dispatch({
           type: ADD_TO_CART,
           payload: {
@@ -105,7 +104,6 @@ export const incQty = (item) => {
     axios
       .post(API + "/carts", qs.stringify(requestBody), config)
       .then((response) => {
-        //console.log(response.data)
         dispatch({
           type: INCREASE_QTY,
           payload: {
@@ -147,7 +145,6 @@ export const decQty = (item) => {
     axios
       .post(API + "/carts", qs.stringify(requestBody), config)
       .then((response) => {
-        //console.log(response.data);
         dispatch({
           type: DECREASE_QTY,
           payload: {
@@ -170,7 +167,6 @@ export const decQty = (item) => {
 
 export const loadCurrentItem = (data) => {
   return (dispatch) => {
-    //console.log(data);
     var token = JSON.parse(localStorage.getItem("token"));
 
     const config = {

@@ -6,7 +6,6 @@ const qs = require("query-string");
 
 export const addToOrder = (orderData) => {
   return (dispatch) => {
-    // console.log(orderData);
     const API = "http://localhost:3000/api";
     var token = JSON.parse(localStorage.getItem("token"));
 
@@ -25,12 +24,9 @@ export const addToOrder = (orderData) => {
       bill: orderData.totalPrice,
     };
 
-    //console.log(requestBody);
-
     axios
       .post(API + "/orders", qs.stringify(requestBody), config)
       .then((response) => {
-        console.log(response);
         dispatch({
           type: ADD_TO_ORDER,
           payload: {
@@ -75,7 +71,6 @@ export const getOrder = () => {
     axios
       .get(API, config)
       .then((response) => {
-        //console.log(response.data);
         dispatch({
           type: GET_ORDER,
           payload: {
@@ -97,8 +92,6 @@ export const getOrder = () => {
 
 export const getOneOrder = (data) => {
   return (dispatch) => {
-    //console.log(data);
-    //const idOrder = "62b662a61dff3774817a2e12";
     var token = JSON.parse(localStorage.getItem("token"));
 
     const config = {
@@ -113,7 +106,6 @@ export const getOneOrder = (data) => {
     axios
       .get(API, config)
       .then((response) => {
-        //console.log(response.data);
         dispatch({
           type: GET_ONE_ORDER,
           payload: {

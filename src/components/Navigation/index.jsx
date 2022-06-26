@@ -14,7 +14,6 @@ function Navigation() {
   var token = JSON.parse(localStorage.getItem("token"));
   var isLogin = JSON.parse(localStorage.getItem("login"));
   const dispatch = useDispatch();
-  //console.log(user)
   const { cartItem } = useSelector((state) => state.Reducer);
   const { getOrderResult } = useSelector((state) => state.OrderReducer);
   const [cartCount, setCartCount] = useState(0);
@@ -52,12 +51,11 @@ function Navigation() {
     axios
       .post(API + "/logout", qs.stringify(requestBody), config)
       .then((res) => {
-        //console.log(res);
         dispatch(logoutUser({ res: res }));
         alert(res.data.message);
       })
       .catch((e) => {
-        console.log(e);
+        alert("Something worng!")
       });
   };
 

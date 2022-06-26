@@ -13,3 +13,16 @@
     padding: 10px;
     background-color: #eee;
 }
+
+.invoice-user-name {
+    font-weight: 800;
+}
+
+.invoice-user-email {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.invoice-alamat {
+    text-transform: uppercase;
+}

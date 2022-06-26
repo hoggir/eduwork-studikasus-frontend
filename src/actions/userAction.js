@@ -62,7 +62,7 @@ export const getUser = () => {
     axios
       .get(API + "/me", config)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         dispatch({
           type: GET_USER,
           payload: {

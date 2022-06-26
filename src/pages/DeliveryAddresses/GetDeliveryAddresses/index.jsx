@@ -10,7 +10,6 @@ function DeliveryAddresses() {
     getListAddressesError,
     deleteAddressesResult,
   } = useSelector((state) => state.AddressesReducer);
-  console.log(getListAddressesResult);
 
   const dispatch = useDispatch();
 

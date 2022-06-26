@@ -5,15 +5,13 @@ import { loadCurrentItem, removeFromCart } from "../../actions/cartAction";
 import CartComp from "../../components/Cart";
 
 function Cart() {
-  const { cartItem, cart } = useSelector((state) => state.Reducer);
-  //console.log(cartItem);
+  const { cartItem } = useSelector((state) => state.Reducer);
   const dispatch = useDispatch();
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
 
   useEffect(() => {
-    console.log(cart);
     dispatch(loadCurrentItem());
   }, [dispatch]);
 

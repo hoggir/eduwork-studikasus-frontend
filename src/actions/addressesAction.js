@@ -112,7 +112,6 @@ export const detailDeliveryAddresses = (data) => {
 
 export const editDeliveryAddresses = (data) => {
   return (dispatch) => {
-    //console.log(data);
     dispatch({
       type: EDIT_DELIVERY_ADDRESSES,
       payload: {
@@ -152,7 +151,7 @@ export const editDeliveryAddresses = (data) => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        alert("Something wrong!")
       });
   };
 };
