@@ -21,6 +21,7 @@ export const loginUser = (dataLogin) => {
       payload: {
         loading: false,
         data: dataLogin.res.data,
+        sudahlogin: true,
       },
     });
   };
@@ -28,6 +29,7 @@ export const loginUser = (dataLogin) => {
 
 export const logoutUser = (dataLogout) => {
   return (dispatch) => {
+    console.log(dataLogout.res);
     dispatch({
       type: LOGOUT_SUCCESS,
       payload: {
@@ -41,6 +43,7 @@ export const logoutUser = (dataLogout) => {
       payload: {
         loading: false,
         data: dataLogout.res.data,
+        sudahlogin: false,
       },
     });
   };
@@ -63,13 +66,25 @@ export const getUser = () => {
       .get(API + "/me", config)
       .then((response) => {
         //console.log(response.data);
-        dispatch({
-          type: GET_USER,
-          payload: {
-            loading: false,
-            data: response.data,
-          },
-        });
+        if (response.data.error === 1) {
+          dispatch({
+            type: GET_USER,
+            payload: {
+              loading: false,
+              data: response.data,
+              sudahlogin: false,
+            },
+          });
+        } else {
+          dispatch({
+            type: GET_USER,
+            payload: {
+              loading: false,
+              data: response.data,
+              sudahlogin: true,
+            },
+          });
+        }
       })
       .catch((error) => {
         dispatch({

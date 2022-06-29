@@ -4,6 +4,7 @@ export const GET_LIST_PRODUCT = "GET_LIST_PRODUCT";
 
 export const getListProduct = (data) => {
   return (dispatch) => {
+    console.log(data);
     const getFoods = async (API) => {
       await axios({
         method: "GET",
@@ -44,6 +45,7 @@ export const getListProduct = (data) => {
     if (data) {
       const searchKey = data.searchTerm;
       const tagKey = data.searchTag;
+      const categoryKey = data.searchCategory;
       if (searchKey) {
         if (searchKey === "") {
           getFoods("http://localhost:3000/api/products/");
@@ -52,6 +54,10 @@ export const getListProduct = (data) => {
         }
       } else if (tagKey) {
         getFoods(`http://localhost:3000/api/products?tags[]=${tagKey}`);
+      } else if (categoryKey) {
+        getFoods(
+          `http://localhost:3000/api/products?=&category=${categoryKey}`
+        );
       } else {
         getFoods("http://localhost:3000/api/products/");
       }

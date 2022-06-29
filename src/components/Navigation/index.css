@@ -1,4 +1,4 @@
-.navbar-brand {
+/* .navbar-brand {
     color: black !important;
     font-family: 'Montserrat', sans-serif;
 }
@@ -23,4 +23,57 @@
 
 .nav-name {
     display: none;
+} */
+
+.nav-color {
+  background-color: #f7f7f7 !important;
 }
+
+.nav-con {
+    display: flex;
+  justify-content: space-between;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+
+.logo {
+  display: flex;
+  color: gray;
+  font-weight: 600;
+}
+
+.logo-on {
+  color: #f02d34;
+}
+
+.nav-text {
+    display: flex;
+    align-items: center;
+  
+}
+
+.cart-icon{
+    font-size: 25px;
+    color: gray;
+    cursor: pointer;
+    position: relative;
+    transition: transform .4s ease;
+    border: none;
+    background-color: transparent;
+  }
+
+  .cart-icon:hover{
+    transform: scale(1.1,1.1);
+  }
+  .cart-item-qty{
+    position: absolute;
+    right: -8px;
+    font-size: 12px;
+    color: #eee;
+    background-color: #f02d34;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 600;
+  }

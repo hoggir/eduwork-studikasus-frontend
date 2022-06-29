@@ -14,7 +14,7 @@ function SearchProduct() {
   };
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={(e) => handleSubmit(e)} className="searchForm">
         <input
           className="form-control"

@@ -92,9 +92,23 @@ function ConfirmOrder() {
       cart: [],
     };
 
-    dispatch(addToOrder(requestBody));
-    dispatch(loadCurrentItem(removecart));
+    if (cartItem.length === 0) {
+      alert("Tidak ada makanan dalam cart!");
+    } else {
+      dispatch(addToOrder(requestBody));
+      dispatch(loadCurrentItem(removecart));
+      alert("Pemesanan berhasil");
+    }
+
     Navigate("/");
+
+    // dispatch(addToOrder(requestBody));
+    // dispatch(loadCurrentItem(removecart));
+    // alert("Pemesanan berhasil");
+
+    // if (cart) {
+    //   Navigate("/");
+    // }
   };
 
   function convertToRupiah(angka) {

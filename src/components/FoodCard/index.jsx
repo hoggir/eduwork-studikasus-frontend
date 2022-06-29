@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../actions/cartAction";
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import "./index.css";
 
 function FoodCard({ product }) {
@@ -25,7 +26,7 @@ function FoodCard({ product }) {
   }
 
   return (
-    <div className="col-md-4">
+    <div className="col-md-3">
       <div className="card">
         <img
           className="news-img"
@@ -51,10 +52,8 @@ function FoodCard({ product }) {
           <button
             className="btn btn-primary"
             onClick={() => dispatch(addToCart(initialState))}
-            //onClick={() => dispatch({ type: "ADD_CART", payload: product })}
-            //onClick={() => dispatch({ type: "ADD_TO_CART", payload: product })}
           >
-            <i className="fa fa-cart-plus"></i>
+            <AddShoppingCartOutlinedIcon />
           </button>
         </div>
       </div>

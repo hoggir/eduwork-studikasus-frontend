@@ -9,8 +9,9 @@ const initialState = {
   userRegisterError: false,
 
   isAuth: false,
-  user: null,
+  user: false,
   token: null,
+  cek: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -21,6 +22,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: action.payload.data.user,
         token: action.payload.data.token,
+        cek: action.payload.sudahlogin,
       };
 
     case LOGOUT_SUCCESS:
@@ -30,6 +32,7 @@ const userReducer = (state = initialState, action) => {
         user: null,
         token: null,
         isAuth: false,
+        cek: action.payload.sudahlogin,
       };
 
     case GET_USER:
@@ -38,6 +41,7 @@ const userReducer = (state = initialState, action) => {
         user: action.payload.data,
         token: action.payload.data.token,
         isAuth: true,
+        cek: action.payload.sudahlogin,
       };
 
     case REGISTER_SUCCESS:
