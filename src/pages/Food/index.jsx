@@ -41,6 +41,12 @@ function Food() {
     setPage(e.target.value);
     dispatch(getListProduct({ searchCategory: e.target.value }));
   };
+
+  const handleInput = (e) => {
+    e.preventDefault();
+    setPage(e.target.value);
+    dispatch(getListProduct({ searchTag: e.target.value }));
+  };
   return (
     <div>
       <div className="food-top">
@@ -51,25 +57,40 @@ function Food() {
         </p>
       </div>
       <SearchProduct />
+      <Tag />
+      <Category />
 
-      <div className="container">
+      {/* <div className="container">
         <div className="tags-wrapper">
           <div className="tags">
-            <div className="tags-title">Tags :</div>
-            {getListTagResult ? (
-              getListTagResult.map((tag) => {
-                return <Tag key={tag._id} tag={tag} />;
-              })
-            ) : getListTagLoading ? (
-              <p>Loading . . .</p>
-            ) : (
-              <p>{getListTagError ? getListTagError : "data kosong"}</p>
-            )}
+            <ul>
+              {getListTagResult ? (
+                getListTagResult.map((tag) => {
+                  return (
+                    <li className="tag-li-item">
+                      <button
+                        id={page === tag.name ? "active" : ""}
+                        className="tag-li-link"
+                        onClick={handleInput}
+                        value={tag.name}
+                      >
+                        <i className="fa fa-tags"></i>
+                        {tag.name}
+                      </button>
+                    </li>
+                  );
+                })
+              ) : getListTagLoading ? (
+                <p>Loading . . .</p>
+              ) : (
+                <p>{getListTagError ? getListTagError : "data kosong"}</p>
+              )}
+            </ul>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="container">
+      {/* <div className="container">
         <div className="category-wrapper">
           <div className="category">
             <ul>
@@ -100,7 +121,7 @@ function Food() {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="container">
         <div className="row all-food">

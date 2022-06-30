@@ -1,0 +1,50 @@
+.food-tags-ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.food-tags-title {
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: -36px;
+    margin-right: 10px;
+    align-items: center;
+}
+
+
+.food-tags-item {
+    display: inline-block;
+    list-style: none;
+    margin: 5px;
+    background-color: grey;
+    border-radius: 18px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.food-tags-item #active {
+    background-color: black;
+    color: white;
+    border-radius: 18px;
+    outline: none;
+}
+
+.food-tags-button {
+    text-transform: capitalize;
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 14px;
+    padding: 5px 15px;
+}
+
+.food-tags-button:hover {
+    background-color: black;
+    color: white;
+    border-radius: 18px;
+}
+
+.food-tags-icon {
+    margin-right: 5px;
+}

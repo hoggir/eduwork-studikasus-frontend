@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../actions/cartAction";
-import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import "./index.css";
 
 function FoodCard({ product }) {
@@ -35,8 +35,8 @@ function FoodCard({ product }) {
         />
         <div className="card-body">
           <h4 className="card-title">{product.name}</h4>
-          <div className="card-text">{product.description}</div>
-          <div className="tags-wrapper">
+          <p className="card-text">{product.description}</p>
+          {/* <div className="tags-wrapper">
             <div className="tags">
               {product.tags.map((value, index) => {
                 return (
@@ -47,14 +47,14 @@ function FoodCard({ product }) {
                 );
               })}
             </div>
-          </div>
-          <p className="card-text">{convertToRupiah(product.price)}</p>
-          <button
-            className="btn btn-primary"
-            onClick={() => dispatch(addToCart(initialState))}
-          >
-            <AddShoppingCartOutlinedIcon />
-          </button>
+          </div> */}
+          <p className="card-price">{convertToRupiah(product.price)}</p>
+        <button
+          className="btn btn-primary"
+          onClick={() => dispatch(addToCart(initialState))}
+        >
+          <AddShoppingCartOutlinedIcon />
+        </button>
         </div>
       </div>
     </div>

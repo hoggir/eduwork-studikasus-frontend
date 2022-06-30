@@ -16,21 +16,21 @@ const Footer = () => {
           {/* Column2 */}
           <div className="col">
             <h4>OPENING HOURS</h4>
-            <ui className="list-unstyled">
+            <li className="list-unstyled">
               <p>Monday : Closed</p>
               <p>Tue-Wed : 9:Am - 10PM</p>
               <p>Thu-Fri : 9:Am - 10PM</p>
               <p>Sat-Sun : 5:PM - 10PM</p>
-            </ui>
+            </li>
           </div>
           {/* Column3 */}
           <div className="col">
             <h4>CONTACT INFORMATION</h4>
-            <ui className="list-unstyled">
+            <li className="list-unstyled">
               <p>Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
               <p>+01 2000 800 9999</p>
               <p>info@admin.com</p>
-            </ui>
+            </li>
           </div>
         </div>
         <hr />
