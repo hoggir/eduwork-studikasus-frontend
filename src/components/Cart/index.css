@@ -27,6 +27,7 @@
     padding: 20px 20px;
     width: 150px;
     height: 150px;
+    object-fit: cover;
 }
 
 .cart-desc {
@@ -43,30 +44,7 @@
     padding: 20px 20px;
 }
 
-.cart-sum-wrapper {
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-}
-
-.cart-sum {
-    display: flex;
-    flex-direction: column;
-    padding: 20px 10px;
-}
-
-.cart-total{
-    display: flex;
-    justify-content: space-between;
-}
-
-.cart-sum-name {
-    font-weight: 600;
-    font-size: 18px;
-}
-
-.cart-sum .btn {
-    background-color: #42b549;
-    color: white;
-    font-weight: 800;
-    width: 100%;
-    justify-content: center;
+.cart-item-plus {
+    background-color: orange;
+    border: none;
 }

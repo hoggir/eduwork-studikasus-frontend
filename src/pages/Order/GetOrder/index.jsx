@@ -21,62 +21,48 @@ function Order() {
     }
   }, [getOrderResult, dispatch]);
 
+  function convertToRupiah(angka) {
+    var rupiah = "";
+    var angkarev = angka.toString().split("").reverse().join("");
+    for (var i = 0; i < angkarev.length; i++)
+      if (i % 3 === 0) rupiah += angkarev.substr(i, 3) + ".";
+    return (
+      "Rp. " +
+      rupiah
+        .split("", rupiah.length - 1)
+        .reverse()
+        .join("")
+    );
+  }
+
   return (
-    <div className="container">
-      <table className="styled-table">
-        <thead>
-          <tr>
-            <th>Nomor</th>
-            <th>Pesanan</th>
-            <th>Jumlah Pesanan</th>
-            <th>Alamat</th>
-            <th>Ongkos kirim</th>
-            <th>Total Harga</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        {orders.length > 0 &&
-          orders.map((orderItem) => {
-            return (
-              <tbody key={orderItem._id}>
-                <tr>
-                  <td>{orderItem._id}</td>
-                  <td>pesanan</td>
-                  <td>jumlah pesanan</td>
-                  <td>
-                    {orderItem.delivery_address.kelurahan},{" "}
-                    {orderItem.delivery_address.kecamatan},{" "}
-                    {orderItem.delivery_address.kabupaten},{" "}
-                    {orderItem.delivery_address.provinsi} (
-                    {orderItem.delivery_address.name})
-                  </td>
-                  <td>{orderItem.delivery_fee}</td>
-                  <td>{orderItem.bill}</td>
-                  <td>{orderItem.status}</td>
-                  <td>
-                    <Link to={"/invoice"}>
-                      <button
-                        onClick={() => dispatch(getOneOrder(orderItem._id))}
-                        className="btn btn-primary"
-                      >
-                        VIEW
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-            );
-          })}
-      </table>
+    <div className="my-order-container">
+      {orders.length > 0 &&
+        orders.map((orderItem) => {
+          return (
+            <div className="order-item-container">
+              <div className="row order-items" key={orderItem._id}>
+                <div className="col-3">{orderItem.status}</div>
+                <div className="col-3">
+                  {convertToRupiah(orderItem.delivery_fee)}
+                </div>
+                <div className="col-3">{convertToRupiah(orderItem.bill)}</div>
+                <div className="col-3 invoice-button">
+                  <Link to={"/invoice"}>
+                    <button
+                      className="btn btn-info"
+                      onClick={() => dispatch(getOneOrder(orderItem._id))}
+                    >
+                      Invoice
+                    </button>
+                  </Link>
+                </div>
+              </div>
+              <hr />
+            </div>
+          );
+        })}
     </div>
   );
-}
-{
-  /* <Link to={"/invoice"}>
-  <button className="btn mt-2" onClick={checkoutHandleClick}>
-    CHECKOUT
-  </button>
-</Link>; */
 }
 export default Order;

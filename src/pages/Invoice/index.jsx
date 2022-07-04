@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getUser } from "../../actions/userAction";
 import "./index.css";
 
@@ -10,6 +11,7 @@ function Invoice() {
   const [userData, setUserData] = useState("");
 
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getUser());
@@ -63,22 +65,8 @@ function Invoice() {
             </div>
           </div>
           <hr />
+
           <div className="row">
-            <div className="col-6">
-              <div className="ml-3">Total Pembelian</div>
-            </div>
-            <div className="col-6">
-              {invoiceData ? (
-                <div>
-                  {convertToRupiah(invoiceData.bill)}
-                </div>
-              ) : (
-                <div></div>
-              )}
-            </div>
-          </div>
-          <hr />
-          <div className="row mb-3">
             <div className="col-6">
               <div className="ml-3">Billed to</div>
             </div>
@@ -106,6 +94,74 @@ function Invoice() {
                   <div></div>
                 )}
               </div>
+            </div>
+          </div>
+          <hr />
+
+          <div className="row  mb-3">
+            <div className="col-6">
+              <div className="ml-3">Products</div>
+            </div>
+            <div className="col-6">
+              {invoiceData ? (
+                invoiceData.products.length > 0 &&
+                invoiceData.products.map((productsItem) => {
+                  return (
+                    <div className="invoice-order-products-container">
+                      <div className="invoice-order-products">
+                        <div className="invoice-order-products-items">
+                          <div className="invoice-products-img">
+                            <img
+                              className="invoice-card-img"
+                              src={`http://localhost:3000/images/products/${productsItem.image_url}`}
+                              alt=""
+                            />
+                          </div>
+                          <div className="invoice-products-desc">
+                            <div>{productsItem.name}</div>
+                            <div>x {productsItem.quantity}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="mr-3">
+                          {convertToRupiah(productsItem.price)}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div></div>
+              )}
+            </div>
+          </div>
+          <hr />
+          <div className="row  mb-3">
+            <div className="col-6">
+              <div className="ml-3">Ongkos Kirim</div>
+            </div>
+            <div className="col-6">
+              {invoiceData ? (
+                <div>{convertToRupiah(invoiceData.delivery_fee)}</div>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          </div>
+          <hr />
+          <div className="row  mb-3">
+            <div className="col-6">
+              <div className="ml-3">Total Pembelian</div>
+            </div>
+            <div className="col-6">
+              {invoiceData ? (
+                <div className="invoice-total">
+                  {convertToRupiah(invoiceData.bill)}
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
         </div>

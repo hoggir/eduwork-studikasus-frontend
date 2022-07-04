@@ -18,9 +18,9 @@ const Footer = () => {
             <h4>OPENING HOURS</h4>
             <li className="list-unstyled">
               <p>Monday : Closed</p>
-              <p>Tue-Wed : 9:Am - 10PM</p>
-              <p>Thu-Fri : 9:Am - 10PM</p>
-              <p>Sat-Sun : 5:PM - 10PM</p>
+              <p>Tue-Wed : 9 AM - 10 PM</p>
+              <p>Thu-Fri : 9 AM - 10 PM</p>
+              <p>Sat-Sun : 5 PM - 10 PM</p>
             </li>
           </div>
           {/* Column3 */}

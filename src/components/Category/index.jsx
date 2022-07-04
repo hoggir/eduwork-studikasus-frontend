@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ListGroup } from "react-bootstrap";
 import { getListProduct } from "../../actions/productAction";
 import { getListCategory } from "../../actions/categoryAction";
 import "./index.css";

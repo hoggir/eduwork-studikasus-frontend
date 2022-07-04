@@ -59,3 +59,172 @@
 .add-addresses {
     padding: 0 15px;
 }
+
+.category-wrapper {
+    margin-top: 40px;
+}
+.category {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-category-item {
+    list-style: none;
+    display: inline-block;
+    background-color: #fc5d35;
+    color: white;
+    margin: 7px;
+}
+
+.food-category-item #active {
+    background-color: white;
+    color: #fc5d35;
+    border: 1px solid #fc5d35;
+    outline: none;
+}
+
+.food-category-button {
+    border: none;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    background-color: transparent;
+}
+
+.food-category-button:hover {
+    border: 1px solid #fc5d35;
+    color: #fc5d35;
+    background-color: white;
+}
+
+
+.profile-wrapper {
+    margin: 20px 45px;
+}
+
+.profile-menu {
+    margin-top: 20px;
+    background-color: none;
+}
+
+.profile-me {
+    display: flex;
+    align-items: center;
+}
+
+.profile-me-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-me-icon{
+    color: lightgray;
+}
+
+.profile-me-desc {
+    margin-left: 6px;
+}
+
+.profile-me-desc-name {
+    font-weight: 600;
+}
+
+.profile-me-desc-more {
+    color: gray;
+}
+
+.profile-sidebar-menu-wrapper {
+    margin-top: 20px;
+    background-color: none;
+}
+
+.profile-sidebar-menu-item #active {
+    color: #fc5d35;
+    outline: none;
+}
+
+.profile-sidebar-menu-profile-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    text-align: start;
+    background-color: white;
+    margin: 12px 0;
+    font-weight: 500;
+}
+
+.profile-sidebar-menu-profile-button span {
+    color: #3399FF;
+}
+
+.profile-sidebar-menu-profile-address {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    text-align: start;
+    background-color: white;
+    margin: 12px 0;
+    font-weight: 500;
+}
+
+.profile-sidebar-menu-profile-address span {
+    color: #99CC00;
+}
+
+.profile-sidebar-menu-profile-order {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    text-align: start;
+    background-color: white;
+    margin: 12px 0;
+    font-weight: 500;
+}
+
+.profile-sidebar-menu-profile-order span {
+    color: #2BAE66;
+}
+
+.profile-sidebar-menu-item button:hover {
+    color: #fc5d35;
+}
+
+.profile-page {
+    background-color: none;
+    border: 1px solid lightgray;
+}
+
+.my-address-wrapper {
+    padding: 30px;
+}
+
+.my-address-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.my-address-title {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.order-title-row {
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: 600;
+    margin-top: 30px;
+}

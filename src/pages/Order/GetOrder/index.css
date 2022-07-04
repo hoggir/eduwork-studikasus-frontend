@@ -1,4 +1,21 @@
-table, th, td {
-    border: 1px solid;
-    padding: 10px;
-  }
+.my-order-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-main {
+  margin-top: 10px;
+  background-color: blanchedalmond;
+  display: flex;
+}
+
+.order-item-img {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+}
+
+.order-items{
+  padding: 0 30px;
+  align-items: center;
+}

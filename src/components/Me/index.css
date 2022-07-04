@@ -1,4 +1,35 @@
-.me-wrapper {
-    width: 100%;
-    margin-left: 20px;
+.my-profile-wrapper {
+    padding: 30px;
+}
+
+.my-profile-title {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.my-profile-title-desc {
+    font-size: 16px;
+}
+
+.my-profile-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.my-profile-main-item {
+    display: flex;
+    flex-direction: row;
+    
+    margin-bottom: 10px;
+}
+
+.my-profile-main-item-left {
+    color: grey;
+    min-width: 100px;
+    padding-right: 10px;
+    text-align: end;
+}
+
+.my-profile-main-item-right {
+    padding-left: 10px;
 }

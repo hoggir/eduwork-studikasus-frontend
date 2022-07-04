@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   getOrderResult: false,
   removeCart: false,
   getInvoice: false,
+  getInvoiceAgain: false,
 };
 
 const orderReducer = (state = INITIAL_STATE, action) => {
@@ -47,6 +48,7 @@ const orderReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         getInvoice: action.payload.invoice,
+        getInvoiceAgain: true,
       };
 
     // bill: response.data.bill,

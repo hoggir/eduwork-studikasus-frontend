@@ -40,11 +40,7 @@ function Profile() {
       </div>
     );
   }
-  return (
-    <div className="container">
-      <Sidebar user={user}/>
-    </div>
-  );
+  return <Sidebar user={user} />;
 }
 
 export default Profile;

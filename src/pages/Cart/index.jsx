@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { loadCurrentItem, removeFromCart } from "../../actions/cartAction";
 import CartComp from "../../components/Cart";
+import "./index.css";
 
 function Cart() {
   const { cartItem } = useSelector((state) => state.Reducer);
@@ -50,13 +51,21 @@ function Cart() {
   return (
     <div className="container">
       <div className="cart-wrapper">
+        <div className="cart-title">
+          <h1>Cart</h1>
+          <p>
+            Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis
+            vehicula enim, non aliquam risus.
+          </p>
+        </div>
         <div className="row all-cart">
           {cartItem.length > 0 &&
             cartItem.map((food) => {
               return <CartComp key={food._id} food={food} />;
             })}
         </div>
-        <div className="cart-sum-wrapper col-4">
+
+        <div className="cart-sum-wrapper col-md-sm-4">
           <div className="cart-sum">
             <p className="cart-sum-name">Ringkasan belanja</p>
             <div className="cart-total text-muted">
@@ -68,6 +77,7 @@ function Cart() {
             </Link>
           </div>
         </div>
+        
       </div>
     </div>
   );

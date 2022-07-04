@@ -36,6 +36,7 @@ function ConfirmOrder() {
 
   useEffect(() => {
     const kurir = [
+      { name: "Opsi Pengiriman", ongkos: 0 },
       { name: "JNE", ongkos: 10000 },
       { name: "J&T", ongkos: 20000 },
       { name: "POS", ongkos: 5000 },
@@ -94,13 +95,21 @@ function ConfirmOrder() {
 
     if (cartItem.length === 0) {
       alert("Tidak ada makanan dalam cart!");
+    } else if (option === "") {
+      alert("Mohon isi alamat!");
+      Navigate("/confirm-order");
+    } else if (pekspedisi === "") {
+      alert("Opsi pengiriman kosong!");
+      Navigate("/confirm-order");
+    } else if (pekspedisi.ongkos === 0) {
+      alert("Opsi pengiriman kosong!");
+      Navigate("/confirm-order");
     } else {
       dispatch(addToOrder(requestBody));
       dispatch(loadCurrentItem(removecart));
       alert("Pemesanan berhasil");
+      Navigate("/");
     }
-
-    Navigate("/");
 
     // dispatch(addToOrder(requestBody));
     // dispatch(loadCurrentItem(removecart));
@@ -128,12 +137,29 @@ function ConfirmOrder() {
   return (
     <div className="container">
       <div className="order-wrapper mb-5">
-        <h1>Konfirmasi Pemesanan</h1>
+        <div className="confirm-order-title">
+          <h1>Konfirmasi Pemesanan</h1>
+          <p>
+            Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis
+            vehicula enim, non aliquam risus.
+          </p>
+        </div>
+
+        <div className="order-food">
+          <label style={{ fontWeight: 600 }}>Pesanan</label>
+          {cartItem.length > 0 &&
+            cartItem.map((food) => {
+              return <CartComp key={food._id} food={food} />;
+            })}
+        </div>
 
         <div className="order-addresses">
           <div className="form-group">
-            <label className="form-label">Pilih Alamat</label>
+            <label className="form-label" style={{ fontWeight: 600 }}>
+              Pilih Alamat
+            </label>
             <select className="form-control" onChange={addressHandleChange}>
+              <option value="">Alamat</option>
               {alamat.map((option, index) => (
                 <option key={index} value={index}>
                   {option.name}
@@ -143,17 +169,11 @@ function ConfirmOrder() {
           </div>
         </div>
 
-        <div className="order-food">
-          <label>Pesanan</label>
-          {cartItem.length > 0 &&
-            cartItem.map((food) => {
-              return <CartComp key={food._id} food={food} />;
-            })}
-        </div>
-
         <div className="order-addresses mt-5">
           <div className="form-group">
-            <label className="form-label">Opsi pengiriman</label>
+            <label className="form-label" style={{ fontWeight: 600 }}>
+              Opsi pengiriman
+            </label>
             <select className="form-control" onChange={ekspedisiHandleChange}>
               {ekspedisi.map((kurir, index) => (
                 <option key={index} value={index}>
@@ -206,11 +226,9 @@ function ConfirmOrder() {
                 <div>{convertToRupiah(totalPrice)}</div>
               )}
             </div>
-            <Link to={"/invoice"}>
-              <button className="btn mt-2" onClick={checkoutHandleClick}>
-                CHECKOUT
-              </button>
-            </Link>
+            <button className="btn mt-2" onClick={checkoutHandleClick}>
+              CHECKOUT
+            </button>
           </div>
         </div>
       </div>

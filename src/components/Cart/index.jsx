@@ -1,10 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  incQty,
-  decQty,
-  removeFromCart,
-} from "../../actions/cartAction";
+import { incQty, decQty, removeFromCart } from "../../actions/cartAction";
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import "./index.css";
 
 function CartComp({ food }) {
@@ -38,8 +35,7 @@ function CartComp({ food }) {
           alt=""
         />
         <div className="cart-desc">
-          <div className="cart-title">{food.name}</div>
-          <div className="cart-title">{food._id}</div>
+          <div className="cart-item-name">{food.name}</div>
 
           <div className="cart-price">{convertToRupiah(food.price)}</div>
           <div className="cart-subtotal">
@@ -48,12 +44,14 @@ function CartComp({ food }) {
         </div>
       </div>
       <div className="cart-right">
+        
         <button
           onClick={() => dispatch(incQty(initialState))}
           className="btn btn-primary"
         >
           +
         </button>
+
         <div className="text-center mt-1 mb-1">{food.quantity}</div>
         <button
           className="btn btn-primary"
@@ -68,10 +66,10 @@ function CartComp({ food }) {
           -
         </button>
         <button
-          className="btn btn-danger"
+          className="btn btn-danger mt-1"
           onClick={() => dispatch(removeFromCart(food))}
         >
-          Hapus
+          <RemoveCircleIcon  style={{ fontSize: 20 }}/>
         </button>
       </div>
     </div>

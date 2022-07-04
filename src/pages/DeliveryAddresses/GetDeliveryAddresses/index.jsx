@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import DeliveryAddressesComp from "../../../components/DeliveryAddressesComp";
 import { useDispatch, useSelector } from "react-redux";
 import { getDeliveryAddresses } from "../../../actions/addressesAction";
+import { getUser } from "../../../actions/userAction";
 
 function DeliveryAddresses() {
+  const { user } = useSelector((state) => state.UserReducer);
+  // console.log(user);
   const {
     getListAddressesResult,
     getListAddressesLoading,
@@ -14,6 +17,7 @@ function DeliveryAddresses() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getUser());
     dispatch(getDeliveryAddresses());
     // eslint-disable-next-line
   }, [dispatch]);
@@ -30,7 +34,7 @@ function DeliveryAddresses() {
       {getListAddressesResult ? (
         getListAddressesResult.map((addresses) => {
           return (
-            <DeliveryAddressesComp key={addresses._id} addresses={addresses} />
+            <DeliveryAddressesComp key={addresses._id} addresses={addresses} user={user} />
           );
         })
       ) : getListAddressesLoading ? (

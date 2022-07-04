@@ -1,5 +1,4 @@
 .addresses-wrapper{
-    background-color: whitesmoke;
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
@@ -25,4 +24,42 @@
 
 .addresses-btn-wrapper .btn-danger {
     margin-left: 10px;
+}
+
+.my-getaddress-main {
+    margin: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.getaddress-left-item {
+    background-color: none;
+    padding: 10px 0;
+}
+
+.my-getaddress-main-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.getaddress-left-item-desc {
+    display: flex;
+}
+
+.getaddress-left-title {
+    text-align: end;
+    min-width: 130px;
+    color: grey;
+    margin-right: 20px;
+}
+
+.getaddress-left-title-name{
+    font-weight: 600;
+}
+
+.my-getaddress-main-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
