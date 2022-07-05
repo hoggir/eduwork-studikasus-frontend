@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import "./index.css";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../../actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, getUser } from "../../actions/userAction";
 
 const qs = require("query-string");
 const api = "http://localhost:3000/auth";
 
 function LoginPage() {
-  //const { dispatch } = useContext(AuthContext);
+  const { cek } = useSelector((state) => state.UserReducer);
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   const initialState = {
     email: "",
@@ -20,8 +25,6 @@ function LoginPage() {
     errorMessage: null,
     token: null,
   };
-
-  const Navigate = useNavigate();
 
   const [data, setData] = useState(initialState);
 
@@ -41,8 +44,6 @@ function LoginPage() {
       token: null,
     });
 
-    //dispatch(loginUser(data));
-
     const requestBody = {
       email: data.email,
       password: data.password,
@@ -58,14 +59,12 @@ function LoginPage() {
       .post(api + "/login", qs.stringify(requestBody), config)
       .then((res) => {
         if (res.data.error === 1) {
-          //console.log(res)
           setData({
             ...data,
             isSubmitting: false,
             errorMessage: res.data.message,
           });
         } else {
-          //console.log(res);
           dispatch(loginUser({ res: res }));
           alert(res.data.message);
           Navigate("/");
@@ -76,42 +75,53 @@ function LoginPage() {
       });
   };
 
+  if (cek) {
+    Navigate("/");
+  }
+
   return (
     <div className="login-wrapper">
-      <Form onSubmit={handleFormSubmit}>
-        <FormGroup>
-          <Label for="exampleEmail">Email</Label>
-          <Input
-            type="email"
-            value={data.email}
-            onChange={handleInputChange}
-            name="email"
-            id="exampleEmail"
-            placeholder="with a placeholder"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="examplePassword">Password</Label>
-          <Input
-            type="password"
-            value={data.password}
-            onChange={handleInputChange}
-            name="password"
-            id="examplePassword"
-            placeholder="password placeholder"
-          />
-        </FormGroup>
-
-        {data.errorMessage && (
-          <div className="alert alert-danger" role="alert">
-            {data.errorMessage}
+      <div className="login-box">
+        <h3 className="text-center mb-5">Login</h3>
+        <Form onSubmit={handleFormSubmit}>
+          <FormGroup className="mb-4">
+            <Input
+              type="email"
+              value={data.email}
+              onChange={handleInputChange}
+              name="email"
+              id="Email"
+              placeholder="Email"
+            />
+          </FormGroup>
+          <FormGroup className="mt-4">
+            <Input
+              type="password"
+              value={data.password}
+              onChange={handleInputChange}
+              name="password"
+              id="Password"
+              placeholder="Password"
+            />
+          </FormGroup>
+          <div className="login-register">
+            <div>Belum punya akun?</div>
+            <Link to="/register">
+              <button>Daftar!</button>
+            </Link>
           </div>
-        )}
 
-        <Button disabled={data.isSubmitting}>
-          {data.isSubmitting ? "...Loading" : "Login"}
-        </Button>
-      </Form>
+          {data.errorMessage && (
+            <div className="alert alert-danger" role="alert">
+              {data.errorMessage}
+            </div>
+          )}
+
+          <Button className="login-button" disabled={data.isSubmitting}>
+            {data.isSubmitting ? "...Loading" : "Login"}
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }

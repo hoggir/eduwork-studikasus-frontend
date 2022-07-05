@@ -8,7 +8,6 @@ const initialState = {
   userRegisterLoading: false,
   userRegisterError: false,
 
-  isAuth: false,
   user: false,
   token: null,
   cek: false,
@@ -31,7 +30,6 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: null,
         token: null,
-        isAuth: false,
         cek: action.payload.sudahlogin,
       };
 
@@ -40,7 +38,6 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: action.payload.data,
         token: action.payload.data.token,
-        isAuth: true,
         cek: action.payload.sudahlogin,
       };
 

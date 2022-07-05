@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { logoutUser, getUser } from "../../actions/userAction";
 import "./index.css";
 
 export default function Jumbotron() {
+  const { cek } = useSelector((state) => state.UserReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
   return (
     <div className="jumbotron-wrapper">
       <div className="jumbotron-main container">
@@ -20,11 +29,19 @@ export default function Jumbotron() {
                 slightly believable.
               </p>
               <div className="jumbotron-left-button">
-                <Link to="/food">
-                  <button href="" className="text-uppercase jumbotron-button">
-                    order now
-                  </button>
-                </Link>
+                {cek ? (
+                  <Link to="/food">
+                    <button href="" className="text-uppercase jumbotron-button">
+                      order now
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to="/register">
+                    <button href="" className="text-uppercase jumbotron-button">
+                      join now
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

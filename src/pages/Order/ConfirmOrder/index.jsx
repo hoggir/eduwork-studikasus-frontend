@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadCurrentItem } from "../../../actions/cartAction";
-import { addToOrder, getOneOrder } from "../../../actions/orderAction";
+import { addToOrder } from "../../../actions/orderAction";
 import { getUser } from "../../../actions/userAction";
 import { getDeliveryAddresses } from "../../../actions/addressesAction";
 import CartComp from "../../../components/Cart";
 //import { loadCurrentItem, removeFromCart } from "../../actions/cartAction";
 import "./index.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ConfirmOrder() {
   const { user } = useSelector((state) => state.UserReducer);
@@ -25,7 +25,6 @@ function ConfirmOrder() {
   const [option, setOption] = useState("");
   const [ekspedisi, setEkspedisi] = useState([]);
   const [pekspedisi, setPekspedisi] = useState("");
-  const [invoice, setInvoice] = useState([]);
   const Navigate = useNavigate();
 
   useEffect(() => {
@@ -110,14 +109,6 @@ function ConfirmOrder() {
       alert("Pemesanan berhasil");
       Navigate("/");
     }
-
-    // dispatch(addToOrder(requestBody));
-    // dispatch(loadCurrentItem(removecart));
-    // alert("Pemesanan berhasil");
-
-    // if (cart) {
-    //   Navigate("/");
-    // }
   };
 
   function convertToRupiah(angka) {
@@ -190,7 +181,6 @@ function ConfirmOrder() {
             <div className="cart-sum-address">
               <div>Alamat pengiriman</div>
 
-              {/* {getProvinsiLoading ? ( */}
               {option ? (
                 <div>
                   <div>
