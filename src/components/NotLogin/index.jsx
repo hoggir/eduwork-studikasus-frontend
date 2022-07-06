@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 export default function NotLogin() {
   return (
-    <div className="container">
-      <h1>ANDA BELUM LOGIN!!!</h1>
-      <li className="btn btn-primary">
+    <div className="container mt-5 mb-5">
+      <h1 className="text-center">Silahakan login terlebih dahulu!</h1>
+      <div>
         <Link to={"/login"} className="btn btn-primary">
-          Login
+          LOGIN
         </Link>
-      </li>
+      </div>
     </div>
   );
 }

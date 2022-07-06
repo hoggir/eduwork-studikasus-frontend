@@ -105,7 +105,7 @@ function Invoice() {
                 invoiceData.products.length > 0 &&
                 invoiceData.products.map((productsItem) => {
                   return (
-                    <div className="invoice-order-products-container">
+                    <div key={productsItem._id} className="invoice-order-products-container">
                       <div className="invoice-order-products">
                         <div className="invoice-order-products-items">
                           <div className="invoice-products-img">

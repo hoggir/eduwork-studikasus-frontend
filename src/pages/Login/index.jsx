@@ -18,6 +18,13 @@ function LoginPage() {
     dispatch(getUser());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (cek) {
+      alert("Anda sudah login!");
+      Navigate("/");
+    }
+  }, [cek, Navigate]);
+
   const initialState = {
     email: "",
     password: "",
@@ -74,10 +81,6 @@ function LoginPage() {
         console.log(error);
       });
   };
-
-  if (cek) {
-    Navigate("/");
-  }
 
   return (
     <div className="login-wrapper">

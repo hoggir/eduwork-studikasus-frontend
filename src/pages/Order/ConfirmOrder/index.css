@@ -4,25 +4,49 @@
     padding: 20px 0;
 }
 
-.order-total {
+.confirm-order-addresses {
+    margin-top: 30px;
+}
+
+.order-checkout-container {
+    background-color: #f7f7f7;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.order-checkout-box {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+}
+
+.order-checkout-title {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.order-checkout-subtotal {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.order-ongkir {
+.order-checkout-shipping {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.order-checkout{
+.order-checkout-payment-total {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     font-weight: 800;
 }
 
-.order-addresses{
-    margin-top: 30px;
+.order-checkout-box button {
+    background-color: #42b549;
+    color: white;
+    font-weight: 800;
+    width: 100%;
+    justify-content: center;
 }

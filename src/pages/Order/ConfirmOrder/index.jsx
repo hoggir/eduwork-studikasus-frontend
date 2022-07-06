@@ -5,7 +5,6 @@ import { addToOrder } from "../../../actions/orderAction";
 import { getUser } from "../../../actions/userAction";
 import { getDeliveryAddresses } from "../../../actions/addressesAction";
 import CartComp from "../../../components/Cart";
-//import { loadCurrentItem, removeFromCart } from "../../actions/cartAction";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +17,6 @@ function ConfirmOrder() {
   );
 
   const dispatch = useDispatch();
-
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [alamat, setAlamat] = useState([]);
@@ -61,7 +59,6 @@ function ConfirmOrder() {
     if (getOrderResult) {
       dispatch(loadCurrentItem());
     }
-    // eslint-disable-next-line
   }, [getOrderResult, dispatch]);
 
   const addressHandleChange = (e) => {
@@ -127,7 +124,7 @@ function ConfirmOrder() {
 
   return (
     <div className="container">
-      <div className="order-wrapper mb-5">
+      <div className="confirm-order-container mb-5">
         <div className="confirm-order-title">
           <h1>Konfirmasi Pemesanan</h1>
           <p>
@@ -136,7 +133,7 @@ function ConfirmOrder() {
           </p>
         </div>
 
-        <div className="order-food">
+        <div>
           <label style={{ fontWeight: 600 }}>Pesanan</label>
           {cartItem.length > 0 &&
             cartItem.map((food) => {
@@ -144,7 +141,7 @@ function ConfirmOrder() {
             })}
         </div>
 
-        <div className="order-addresses">
+        <div className="confirm-order-addresses">
           <div className="form-group">
             <label className="form-label" style={{ fontWeight: 600 }}>
               Pilih Alamat
@@ -160,7 +157,7 @@ function ConfirmOrder() {
           </div>
         </div>
 
-        <div className="order-addresses mt-5">
+        <div className="confirm-order-addresses mt-5">
           <div className="form-group">
             <label className="form-label" style={{ fontWeight: 600 }}>
               Opsi pengiriman
@@ -175,12 +172,11 @@ function ConfirmOrder() {
           </div>
         </div>
 
-        <div className="cart-sum-wrapper mt-5">
-          <div className="cart-sum">
-            <p className="cart-sum-name">Checkout</p>
-            <div className="cart-sum-address">
+        <div className="order-checkout-container mt-5">
+          <div className="order-checkout-box">
+            <p className="order-checkout-title">Checkout</p>
+            <div className="order-checkout-address">
               <div>Alamat pengiriman</div>
-
               {option ? (
                 <div>
                   <div>
@@ -195,11 +191,13 @@ function ConfirmOrder() {
                 <div></div>
               )}
             </div>
-            <div className="order-total text-muted">
+
+            <div className="order-checkout-subtotal text-muted">
               <div>Total pesanan ({totalItems} makanan):</div>
               <div>{convertToRupiah(totalPrice)}</div>
             </div>
-            <div className="order-ongkir text-muted">
+
+            <div className="order-checkout-shipping text-muted">
               <div>Ongkos kirim: ({pekspedisi.name})</div>
               {pekspedisi.ongkos ? (
                 <div>{convertToRupiah(pekspedisi.ongkos)}</div>
@@ -208,7 +206,7 @@ function ConfirmOrder() {
               )}
             </div>
 
-            <div className="order-checkout">
+            <div className="order-checkout-payment-total">
               <div>Total Pembayaran: </div>
               {pekspedisi.ongkos ? (
                 <div>{convertToRupiah(totalPrice + pekspedisi.ongkos)}</div>
@@ -216,6 +214,7 @@ function ConfirmOrder() {
                 <div>{convertToRupiah(totalPrice)}</div>
               )}
             </div>
+
             <button className="btn mt-2" onClick={checkoutHandleClick}>
               CHECKOUT
             </button>

@@ -39,8 +39,8 @@ function Order() {
       {orders.length > 0 &&
         orders.map((orderItem) => {
           return (
-            <div className="order-item-container">
-              <div className="row order-items" key={orderItem._id}>
+            <div key={orderItem._id} className="order-item-container">
+              <div className="row order-items">
                 <div className="col-3">{orderItem.status}</div>
                 <div className="col-3">
                   {convertToRupiah(orderItem.delivery_fee)}

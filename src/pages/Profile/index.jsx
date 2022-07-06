@@ -1,46 +1,28 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import NotLogin from "../../components/NotLogin";
 import Sidebar from "../../components/Sidebar";
-
-const API = "http://localhost:3000/auth";
+import { getUser } from "../../actions/userAction";
 
 function Profile() {
-  const [user, setUser] = useState({});
-  var token = JSON.parse(localStorage.getItem("token"));
-
-  const fetchData = () => {
-    var config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    };
-
-    axios
-      .get(API + "/me", config)
-      .then((res) => {
-        //console.log(res.data);
-        setUser(res.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  const { cek, user } = useSelector((state) => state.UserReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line
-  }, []);
+    dispatch(getUser());
+  }, [dispatch]);
 
-  if (user.error) {
-    return (
-      <div className="container">
-        <NotLogin />
-      </div>
-    );
-  }
-  return <Sidebar user={user} />;
+  return (
+    <div>
+      {cek ? (
+        <Sidebar user={user} />
+      ) : (
+        <div className="container">
+          <NotLogin />
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Profile;

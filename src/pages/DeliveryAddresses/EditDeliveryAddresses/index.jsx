@@ -6,6 +6,7 @@ import {
   getKecamatan,
   getKelurahan,
 } from "../../../actions/addressAPI";
+import { Link } from "react-router-dom";
 import { editDeliveryAddresses } from "../../../actions/addressesAction";
 
 function EditAddresses() {
@@ -130,6 +131,9 @@ function EditAddresses() {
 
   return (
     <div className="container">
+      <div className="mt-4 mb-4">
+        <h4>Ubah Alamat</h4>
+      </div>
       <div className="add-address-wrapper">
         <form>
           <div className="form-group">
@@ -234,13 +238,18 @@ function EditAddresses() {
                 })}
             </select>
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary mt-3"
-            onClick={handleClick}
-          >
-            Tambah
-          </button>
+          <div className="mt-4 mb-4">
+            <Link to="/profile">
+              <button className="btn btn-danger mr-2">Batal</button>
+            </Link>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={handleClick}
+            >
+              Ubah
+            </button>
+          </div>
         </form>
       </div>
     </div>
