@@ -4,7 +4,6 @@ export const GET_LIST_PRODUCT = "GET_LIST_PRODUCT";
 
 export const getListProduct = (data) => {
   return (dispatch) => {
-    console.log(data);
     const getFoods = async (API) => {
       await axios({
         method: "GET",

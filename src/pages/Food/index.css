@@ -1,25 +1,16 @@
-.food-top {
+.food-title {
     margin-top: 20px;
     padding: 20px 0;
 }
 
-.food-top h1 {
+.food-title h1 {
     text-align: center;
 }
 
-.food-top p {
+.food-title p {
     text-align: center;
 }
 
-.searchForm {
-    margin-bottom: 30px;
-    display: flex;
-}
-
-.searchForm > .btn {
-    margin-left: 10px;
-}
-
-.all-food{
+.food-row {
     margin-bottom: 50px;
 }

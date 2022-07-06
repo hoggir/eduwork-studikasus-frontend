@@ -4,7 +4,7 @@ import "./index.css";
 function SpecialFood({ food }) {
   return (
     <div className="col-md-4">
-      <div className="home-special-card">
+      <div className="home-special-box">
         <div className="special-image">
           <img
             className="special-image-img"

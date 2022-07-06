@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import "./index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, getUser } from "../../actions/userAction";

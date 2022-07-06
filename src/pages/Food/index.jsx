@@ -25,7 +25,7 @@ function Food() {
 
   return (
     <div>
-      <div className="food-top">
+      <div className="food-title">
         <h1>Menu</h1>
         <p>
           Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis
@@ -38,7 +38,7 @@ function Food() {
       <Category />
 
       <div className="container">
-        <div className="row all-food">
+        <div className="row food-row">
           {getListProductResult ? (
             getListProductResult.map((product) => {
               return <FoodCard key={product._id} product={product} />;

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getListProduct } from "../../actions/productAction";
+import "./index.css";
 
 function SearchProduct() {
   const [searchTerm, setSearchTerm] = useState("");
-
   const dispatch = useDispatch();
 
-  // eslint-disable-next-line no-use-before-define
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getListProduct({ searchTerm: searchTerm }));
@@ -15,7 +14,7 @@ function SearchProduct() {
 
   return (
     <div className="container">
-      <form onSubmit={(e) => handleSubmit(e)} className="searchForm">
+      <form onSubmit={(e) => handleSubmit(e)} className="search-form">
         <input
           className="form-control"
           type="search"
@@ -23,7 +22,7 @@ function SearchProduct() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="submit" className="btn btn-primary oke">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>

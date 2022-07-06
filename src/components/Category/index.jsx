@@ -28,14 +28,14 @@ function Category() {
   return (
     <div className="container">
       <div className="category-wrapper">
-        <div className="category">
+        <div className="category-container">
           <ul>
-            <li className="food-category-item">
+            <li className="category-box">
               <button
                 value=""
                 id={page === "" ? "active" : ""}
                 onClick={handleOnclick}
-                className="food-category-button"
+                className="category-button"
               >
                 All
               </button>
@@ -43,12 +43,12 @@ function Category() {
             {getListCategoriesResult ? (
               getListCategoriesResult.map((category) => {
                 return (
-                  <li className="food-category-item" key={category._id}>
+                  <li className="category-box" key={category._id}>
                     <button
                       value={category.name}
                       id={page === category.name ? "active" : ""}
                       onClick={handleOnclick}
-                      className="food-category-button"
+                      className="category-button"
                     >
                       {category.name}
                     </button>
@@ -56,7 +56,7 @@ function Category() {
                 );
               })
             ) : getListCategoriesLoading ? (
-              <p>Loading . . .</p>
+              <p className="text-center">Loading . . .</p>
             ) : (
               <p>
                 {getListCategoriesError

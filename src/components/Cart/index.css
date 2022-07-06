@@ -1,15 +1,4 @@
-.cart-wrapper {
-    margin: auto;
-    color: black;
-    margin: 0 30px;
-}
-
-.all-cart {
-    display: flex;
-    flex-direction: column;
-}
-
-.cart-item {
+.cart-box {
     align-items: center;
     background-color: whitesmoke;
     margin-bottom: 10px;
@@ -17,34 +6,25 @@
     justify-content: space-between;
 }
 
-.cart-left {
+.cart-left-items {
     align-items: center;
     display: flex;
     flex-direction: row;
 }
 
-.card-img {
+.cart-left-items img {
     padding: 20px 20px;
     width: 150px;
     height: 150px;
     object-fit: cover;
 }
 
-.cart-desc {
-    margin-left: 0px;
+.cart-left-food-price {
+    font-weight: 600;
 }
 
-.cart-price {
-    font-weight: 800;
-}
-
-.cart-right {
+.cart-right-items {
     display: flex;
     flex-direction: column;
     padding: 20px 20px;
-}
-
-.cart-item-plus {
-    background-color: orange;
-    border: none;
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getOrder, getOneOrder } from "../../../actions/orderAction";
-import GetOrderComp from "../../../components/Order/GetOrderComp";
 import "./index.css";
 
 function Order() {

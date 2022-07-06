@@ -30,22 +30,3 @@ export default function me(data) {
     </div>
   );
 }
-
-{
-  /* <div className="row">
-          <div className="col-2">
-            <div className="my-profile-main-left">
-              <div>Fullname</div>
-              <div>Name</div>
-              <div>Email</div>
-            </div>
-          </div>
-          <div className="col-10">
-            <div className="my-profile-right">
-              <div>{data.me.full_name}</div>
-              <div>{data.me.full_name}</div>
-              <div>{data.me.email}</div>
-            </div>
-          </div>
-        </div> */
-}

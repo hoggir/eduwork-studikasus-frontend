@@ -1,17 +1,17 @@
-.card {
+.food-card-box {
     margin: 20px 0;
     min-height: 420px;
 }
 
-.card img {
+.food-card-box img {
     height: 175px;
     object-fit: cover;
 }
 
-.card-text {
+.food-card-text {
     min-height: 50px;
 }
 
-.card-price {
+.food-card-price {
     font-weight: 600;
 }

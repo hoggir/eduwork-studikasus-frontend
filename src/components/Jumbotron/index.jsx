@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { logoutUser, getUser } from "../../actions/userAction";
+import { getUser } from "../../actions/userAction";
 import "./index.css";
 
 export default function Jumbotron() {
@@ -13,8 +13,8 @@ export default function Jumbotron() {
   }, [dispatch]);
 
   return (
-    <div className="jumbotron-wrapper">
-      <div className="jumbotron-main container">
+    <div className="jumbotron-container">
+      <div className="container">
         <div className="row">
           <div className="col-md-6">
             <div className="left-jumbotron">
@@ -46,11 +46,11 @@ export default function Jumbotron() {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="right-jumbotron d-flex">
+            <div className="right-jumbotron">
               <div>
                 <img
                   src={`http://localhost:3000/images/products/jumbo-img.png`}
-                  alt=""
+                  alt="Gambar"
                 />
               </div>
             </div>

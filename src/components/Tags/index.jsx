@@ -9,7 +9,6 @@ function Tag() {
   const { getListTagResult, getListTagLoading, getListTagError } = useSelector(
     (state) => state.TagReducer
   );
-
   const [page, setPage] = useState("");
   const dispatch = useDispatch();
 
@@ -26,7 +25,7 @@ function Tag() {
 
   return (
     <div className="container">
-      <div className="food-tags">
+      <div className="food-tags-container">
         <ul>
           <div className="food-tags-ul">
             <p className="food-tags-title">Tags:</p>
@@ -74,35 +73,6 @@ function Tag() {
         </ul>
       </div>
     </div>
-    // <div className="container">
-    //   <div className="food-tags">
-    //     <div className="food-tags-title">Tags : </div>
-    //     {getListTagResult ? (
-    //       getListTagResult.map((tag) => {
-    //         return (
-    //           <div key={tag._id} className="food-tags-item">
-    //             <button
-    //               id={page === tag.name ? "active" : ""}
-    //               className="food-tags-button"
-    //               onClick={handleInput}
-    //               value={tag.name}
-    //             >
-    //               <LocalOfferIcon
-    //                 style={{ fontSize: 14 }}
-    //                 className="food-tags-icon"
-    //               />
-    //               {tag.name}
-    //             </button>
-    //           </div>
-    //         );
-    //       })
-    //     ) : getListTagLoading ? (
-    //       <p>Loading . . .</p>
-    //     ) : (
-    //       <p>{getListTagError ? getListTagError : "data kosong"}</p>
-    //     )}
-    //   </div>
-    // </div>
   );
 }
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { getUser } from "../../actions/userAction";
 import "./index.css";
 
@@ -11,7 +10,6 @@ function Invoice() {
   const [userData, setUserData] = useState("");
 
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getUser());

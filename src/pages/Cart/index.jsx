@@ -50,25 +50,25 @@ function Cart() {
 
   return (
     <div className="container">
-      <div className="cart-wrapper">
-        <div className="cart-title">
+      <div className="cart-container">
+        <div className="cart-title-box">
           <h1>Cart</h1>
           <p>
             Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis
             vehicula enim, non aliquam risus.
           </p>
         </div>
-        <div className="row all-cart">
+        <div className="row cart-row">
           {cartItem.length > 0 &&
             cartItem.map((food) => {
               return <CartComp key={food._id} food={food} />;
             })}
         </div>
 
-        <div className="cart-sum-wrapper col-md-sm-4">
-          <div className="cart-sum">
-            <p className="cart-sum-name">Ringkasan belanja</p>
-            <div className="cart-total text-muted">
+        <div className="shopping-summary-container">
+          <div className="shopping-summary-box">
+            <p className="shopping-summary-title">Ringkasan belanja</p>
+            <div className="shopping-summary-total text-muted">
               <p>Total: ({totalItems} barang)</p>
               <p>{convertToRupiah(totalPrice)}</p>
             </div>

@@ -1,31 +1,42 @@
-.cart-title {
+.cart-container {
+    margin: auto;
+    color: black;
+}
+
+.cart-title-box {
     text-align: center;
     margin-top: 20px;
     padding: 20px 0;
 }
 
-.cart-sum-wrapper {
+.cart-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.shopping-summary-container {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     margin: 40px 0;
 }
 
-.cart-sum {
+.shopping-summary-box {
+    background-color: white;
     display: flex;
     flex-direction: column;
     padding: 20px 10px;
 }
 
-.cart-total{
-    display: flex;
-    justify-content: space-between;
-}
-
-.cart-sum-name {
+.shopping-summary-title {
     font-weight: 600;
     font-size: 18px;
 }
 
-.cart-sum .btn {
+.shopping-summary-total {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shopping-summary-box button {
     background-color: #42b549;
     color: white;
     font-weight: 800;

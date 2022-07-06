@@ -27,34 +27,21 @@ function FoodCard({ product }) {
 
   return (
     <div className="col-md-3">
-      <div className="card">
+      <div className="card food-card-box">
         <img
-          className="news-img"
           src={`http://localhost:3000/images/products/${product.image_url}`}
           alt=""
         />
         <div className="card-body">
-          <h4 className="card-title">{product.name}</h4>
-          <p className="card-text">{product.description}</p>
-          {/* <div className="tags-wrapper">
-            <div className="tags">
-              {product.tags.map((value, index) => {
-                return (
-                  <div key={index} className="card-text-tags">
-                    <i className="fa fa-tags"></i>
-                    {" " + value.name + " "}
-                  </div>
-                );
-              })}
-            </div>
-          </div> */}
-          <p className="card-price">{convertToRupiah(product.price)}</p>
-        <button
-          className="btn btn-primary"
-          onClick={() => dispatch(addToCart(initialState))}
-        >
-          <AddShoppingCartOutlinedIcon />
-        </button>
+          <h4>{product.name}</h4>
+          <p className="food-card-text">{product.description}</p>
+          <p className="food-card-price">{convertToRupiah(product.price)}</p>
+          <button
+            className="btn btn-primary"
+            onClick={() => dispatch(addToCart(initialState))}
+          >
+            <AddShoppingCartOutlinedIcon />
+          </button>
         </div>
       </div>
     </div>

@@ -1,12 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { incQty, decQty, removeFromCart } from "../../actions/cartAction";
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import DeleteIcon from "@mui/icons-material/Delete";
 import "./index.css";
 
 function CartComp({ food }) {
   const dispatch = useDispatch();
-
   const initialState = {
     ...food,
     qty: 1,
@@ -27,24 +26,22 @@ function CartComp({ food }) {
   }
 
   return (
-    <div className="cart-item">
-      <div className="cart-left">
+    <div className="cart-box">
+      <div className="cart-left-items">
         <img
-          className="card-img"
           src={`http://localhost:3000/images/products/${food.image_url}`}
           alt=""
         />
-        <div className="cart-desc">
-          <div className="cart-item-name">{food.name}</div>
-
-          <div className="cart-price">{convertToRupiah(food.price)}</div>
-          <div className="cart-subtotal">
-            Subtotal: {convertToRupiah(food.price * food.quantity)}
+        <div className="cart-left-contents">
+          <div>{food.name}</div>
+          <div className="cart-left-food-price">
+            {convertToRupiah(food.price)}
           </div>
+          <div>Subtotal: {convertToRupiah(food.price * food.quantity)}</div>
         </div>
       </div>
-      <div className="cart-right">
-        
+
+      <div className="cart-right-items">
         <button
           onClick={() => dispatch(incQty(initialState))}
           className="btn btn-primary"
@@ -53,6 +50,7 @@ function CartComp({ food }) {
         </button>
 
         <div className="text-center mt-1 mb-1">{food.quantity}</div>
+
         <button
           className="btn btn-primary"
           onClick={() => {
@@ -65,11 +63,12 @@ function CartComp({ food }) {
         >
           -
         </button>
+
         <button
           className="btn btn-danger mt-1"
           onClick={() => dispatch(removeFromCart(food))}
         >
-          <RemoveCircleIcon  style={{ fontSize: 20 }}/>
+          <DeleteIcon style={{ fontSize: 20 }} />
         </button>
       </div>
     </div>

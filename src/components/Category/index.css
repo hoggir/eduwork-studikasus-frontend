@@ -1,14 +1,14 @@
 .category-wrapper {
     margin-top: 40px;
 }
-.category {
+.category-container {
     padding: 5px 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.food-category-item {
+.category-box {
     list-style: none;
     display: inline-block;
     background-color: #fc5d35;
@@ -16,14 +16,14 @@
     margin: 7px;
 }
 
-.food-category-item #active {
+.category-box #active {
     background-color: white;
     color: #fc5d35;
     border: 1px solid #fc5d35;
     outline: none;
 }
 
-.food-category-button {
+.category-button {
     border: none;
     padding: 10px 30px;
     display: flex;
@@ -34,7 +34,7 @@
     background-color: transparent;
 }
 
-.food-category-button:hover {
+.category-button:hover {
     border: 1px solid #fc5d35;
     color: #fc5d35;
     background-color: white;

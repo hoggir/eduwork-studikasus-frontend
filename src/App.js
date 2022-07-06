@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart";
 import Invoice from "./pages/Invoice";
-import Order from "./pages/Order/GetOrder";
 import ConfirmOrder from "./pages/Order/ConfirmOrder";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -13,6 +12,7 @@ import Food from "./pages/Food";
 import DeliveryAddresses from "./pages/DeliveryAddresses/GetDeliveryAddresses";
 import AddAddresses from "./pages/DeliveryAddresses/AddDeliveryAddresses";
 import EditAddresses from "./pages/DeliveryAddresses/EditDeliveryAddresses";
+//import Order from "./pages/Order/GetOrder";
 import "./App.css";
 
 function App() {

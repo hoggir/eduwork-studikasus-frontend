@@ -27,8 +27,8 @@ function Home() {
       <Jumbotron />
 
       <div className="container">
-        <div className="home-main">
-          <h1 className="home-text">Special Menu</h1>
+        <div className="home-special-menu">
+          <h1>Special Menu</h1>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
           </p>
@@ -47,9 +47,9 @@ function Home() {
             <p>{getListProductError ? getListProductError : "data kosong"}</p>
           )}
         </div>
-        <div className="more-food-button">
+        <div className="home-more-special-button-box">
           <Link to="/food">
-            <button href="" className="text-uppercase more-button">
+            <button href="" className="home-more-special-button">
               more food
             </button>
           </Link>
