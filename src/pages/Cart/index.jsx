@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getUser } from "../../actions/userAction";
 import { loadCurrentItem, removeFromCart } from "../../actions/cartAction";
 import CartComp from "../../components/Cart";
 import "./index.css";
 
 function Cart() {
-  const { cek } = useSelector((state) => state.UserReducer);
   const { cartItem } = useSelector((state) => state.Reducer);
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -18,13 +16,6 @@ function Cart() {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (!cek) {
-      alert("Anda belum login!");
-      Navigate("/login");
-    }
-  }, [cek, Navigate]);
 
   useEffect(() => {
     dispatch(loadCurrentItem());
@@ -91,7 +82,6 @@ function Cart() {
             </Link>
           </div>
         </div>
-        
       </div>
     </div>
   );

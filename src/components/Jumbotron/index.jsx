@@ -53,6 +53,21 @@ export default function Jumbotron() {
                   alt="Gambar"
                 />
               </div>
+              <div className="jumbotron-right-button">
+                {cek ? (
+                  <Link to="/food">
+                    <button href="" className="text-uppercase jumbotron-button">
+                      order now
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to="/register">
+                    <button href="" className="text-uppercase jumbotron-button">
+                      join now
+                    </button>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>
